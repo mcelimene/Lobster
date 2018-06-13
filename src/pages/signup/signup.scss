@@ -1,0 +1,20 @@
+page-signup {
+	position:relative;
+
+	input{
+		text-align: center;
+		border: none;
+		border-radius:30px;
+		width: 90%;
+		margin: 5%;
+		padding: 1em;
+		background-color: rgb(242,241,239);
+	}
+
+	#button {
+		position: absolute;
+		bottom: 3em;
+		width: 90%;
+	}
+
+}

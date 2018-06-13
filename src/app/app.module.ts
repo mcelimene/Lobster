@@ -3,24 +3,23 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
-import { ProfilPage } from '../pages/profil/profil';
-import { AuthPage } from '../pages/auth/auth';
+import { WelcomePage } from '../pages/welcome/welcome';
 import { HomePage } from '../pages/home/home';
-import { ConversationsPage } from '../pages/conversations/conversations';
-import { MessagesPage } from '../pages/messages/messages';
+import { ProfilPage } from '../pages/home/profil/profil';
+import { ConversationsPage } from '../pages/home/conversations/conversations';
+import { MessagesPage } from '../pages/home/messages/messages';
 import { TabsPage } from '../pages/tabs/tabs';
 import { SigninPage } from '../pages/signin/signin';
-import { AddMemberPage } from '../pages/add-member/add-member';
-import { Geolocation } from '@ionic-native/geolocation';
+import { SignupPage } from "../pages/signup/signup";
+import { InfosPage } from "../pages/signup/infos/infos";
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthService } from '../services/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AddMember2Page } from '../pages/add-member2/add-member2';
-import { DemandesPage } from '../pages/demandes/demandes';
+import { DemandesPage } from '../pages/home/demandes/demandes';
 import { RadarPage } from '../pages/radar/radar';
-
-
+import { Geolocation } from '@ionic-native/geolocation';
 
 @NgModule({
   declarations: [
@@ -29,11 +28,11 @@ import { RadarPage } from '../pages/radar/radar';
     ConversationsPage,
     MessagesPage,
     HomePage,
-    SigninPage,
-    AuthPage,
+	SigninPage,
+	SignupPage,
+	InfosPage,
+    WelcomePage,
     TabsPage,
-    AddMemberPage,
-    AddMember2Page,
     DemandesPage,
     RadarPage
   ],
@@ -48,22 +47,22 @@ import { RadarPage } from '../pages/radar/radar';
     MyApp,
     ProfilPage,
     HomePage,
-    AddMemberPage,
-    AddMember2Page,
     ConversationsPage,
     MessagesPage,
-    AuthPage,
-    SigninPage,
+    WelcomePage,
+	SigninPage,
+	SignupPage,
+	InfosPage,
     TabsPage,
     DemandesPage,
     RadarPage
   ],
   providers: [
-  Geolocation,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AuthService
+    AuthService,
+    Geolocation
   ]
 })
 export class AppModule {}

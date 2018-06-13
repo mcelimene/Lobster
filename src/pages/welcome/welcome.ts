@@ -1,24 +1,24 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AddMemberPage } from '../add-member/add-member';
 import { SigninPage } from '../signin/signin';
+import { SignupPage } from '../signup/signup';
 
 @IonicPage()
 @Component({
-  selector: 'page-auth',
-  templateUrl: 'auth.html',
+  selector: 'page-welcome',
+  templateUrl: 'welcome.html',
 })
-export class AuthPage {
+export class WelcomePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad AuthPage');
+    console.log('ionViewDidLoad WelcomePage');
   }
 
   register() {
-    this.navCtrl.push(AddMemberPage);
+    this.navCtrl.push(SignupPage);
   }
 
   connect() {

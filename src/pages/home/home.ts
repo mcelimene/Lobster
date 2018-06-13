@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { ProfilPage } from '../profil/profil';
-import { ConversationsPage } from '../conversations/conversations';
-import { DemandesPage } from '../demandes/demandes';
+import { ProfilPage } from '../home/profil/profil';
+import { ConversationsPage } from '../home/conversations/conversations';
+import { DemandesPage } from '../home/demandes/demandes';
 import { RadarPage } from '../radar/radar';
 
 @Component({
