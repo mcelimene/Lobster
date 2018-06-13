@@ -1,9 +1,7 @@
 <ion-header>
-
 	<ion-navbar color="orange">
 		<ion-title>Connexion</ion-title>
 	</ion-navbar>
-
 </ion-header>
 
 <ion-content padding text-center class="center">
@@ -11,15 +9,10 @@
 	<form (ngSubmit)="signin()" [formGroup]="signinForm">
 
 		<!-- Email -->
-
 		<input type="email" placeholder="email" formControlName="email">
 
-
 		<!-- Password -->
-
 		<input type="password" placeholder="mot de passe" formControlName="password">
-
-
 
 		<button ion-button round outline block type="submit" [disabled]="!signinForm.valid" color="orange" round outline block>connexion</button>
 		<div class="login-footer">
