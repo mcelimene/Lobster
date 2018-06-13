@@ -1,23 +1,28 @@
 <ion-header>
-  <ion-navbar color="orange">
-    <ion-title>Conversation en cours</ion-title>
-  </ion-navbar>
+	<ion-navbar color="orange">
+		<ion-title>Conversation en cours</ion-title>
+	</ion-navbar>
 </ion-header>
 
 <ion-content>
-  <ion-list inset>
+	<ion-list inset>
 
-    <ion-item *ngFor="let conv of convs" (click)="goToConv(conv.Id, conv.Name)" >       <!-- Lance la répétition de l'ion-item  -->
+		<ion-item *ngFor="let conv of convs" (click)="goToConv(conv.Id, conv.Name)">
+			<!-- Lance la répétition de l'ion-item  -->
 
-      <ion-avatar item-start >
-        <img src={{conv.Img}}>                                       <!-- Indique l'url de l'avatar de l'utilisateur  -->
-      </ion-avatar>
+			<ion-avatar item-start>
+				<img src={{conv.Img}}>
+				<!-- Indique l'url de l'avatar de l'utilisateur  -->
+			</ion-avatar>
 
-      <h2>{{ conv.Name }}, {{ conv.Age }} ans</h2>                   <!-- Indique le nom de l'utilisateur  -->
-       <p>{{conv.msg}}</p>                                           <!-- Indique le dernier message reçu de l'utilisateur  -->
+			<h2>{{ conv.Name }}, {{ conv.Age }} ans</h2>
+			<!-- Indique le nom de l'utilisateur  -->
+			<p>{{conv.msg}}</p>
+			<!-- Indique le dernier message reçu de l'utilisateur  -->
 
-    </ion-item>                                                      <!-- Termine ion-item  -->
+		</ion-item>
+		<!-- Termine ion-item  -->
 
- </ion-list>
+	</ion-list>
 
 </ion-content>

@@ -1,33 +1,34 @@
 <ion-header>
-  <ion-navbar color="orange">
-    <ion-title>Profil</ion-title>
-  </ion-navbar>
+	<ion-navbar color="orange">
+		<ion-title>Profil</ion-title>
+	</ion-navbar>
 </ion-header>
 
-<ion-content >
-  <ion-list  ion-item *ngFor="let item of items" inset>
+<ion-content>
+	<ion-list ion-item *ngFor="let item of items" inset>
 
-<ion-grid  ion-text color='orange'>
-  <ion-row>
-    <ion-col >
-    <h1>{{item.pseudo}}</h1>
- 	  <h2>{{item.age}}</h2>
-  	<h2>{{item.sexe}}</h2>
-    </ion-col>
-    <ion-col >
-      <img id='profils' src='assets/imgs/avatar1.png' alt='photo de profils'>
-    </ion-col>
-  </ion-row>
+		<ion-grid ion-text color='orange'>
+			<ion-row>
+				<ion-col>
+					<h1>{{item.pseudo}}</h1>
+					<h2>{{item.age}}</h2>
+					<h2>{{item.sexe}}</h2>
+				</ion-col>
+				<ion-col>
+					<img id='profils' src='assets/imgs/avatar1.png' alt='photo de profils'>
+				</ion-col>
+			</ion-row>
 
-</ion-grid>
-<hr>
-  	<div ion-text color='orange'>
- 	    <h2>{{item.description}}</h2> <!--<img id='modif' src='../assets/imgs/modif.png' alt='modif'>-->
-	    <h2>Je recherche{{item.orientation}}</h2>
-	    <h2>{{item.aime}}</h2>
-	    <h2>{{item.aimepas}}</h2>
-	</div>
+		</ion-grid>
+		<hr>
+		<div ion-text color='orange'>
+			<h2>{{item.description}}</h2>
+			<!--<img id='modif' src='../assets/imgs/modif.png' alt='modif'>-->
+			<h2>Je recherche{{item.orientation}}</h2>
+			<h2>{{item.aime}}</h2>
+			<h2>{{item.aimepas}}</h2>
+		</div>
 
-</ion-list>
+	</ion-list>
 
 </ion-content>

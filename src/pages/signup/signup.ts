@@ -8,15 +8,11 @@ import { InfosPage } from "./infos/infos";
 	templateUrl: 'signup.html',
 })
 
-
 export class SignupPage {
 
 	auth: boolean;
 
 	constructor(public navCtrl: NavController, public navParams: NavParams) { }
-	ionViewDidLoad() {
-		// console.log("ionViewDidLoad SignupPage");
-	}
 
 	last() {
 		this.navCtrl.push(InfosPage);
