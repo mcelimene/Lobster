@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { IonicPage, NavController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { AuthService } from '../../services/auth.service';
+import * as firebase from 'firebase';
 
 @IonicPage()
 @Component({
@@ -40,7 +41,9 @@ export class SigninPage implements OnInit {
 		this.authService.signInUser(email, password).then(
 			() => {
 				console.log("connecté");
-				this.navCtrl.setRoot(HomePage);
+				this.navCtrl.setRoot(HomePage, {
+					id: firebase.auth().currentUser.uid
+				});
 			},
 			error => {
 				if (error["code"] === "auth/invalid-email") {

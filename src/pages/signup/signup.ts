@@ -88,7 +88,6 @@ export class SignupPage implements OnInit {
 			},
 			error => {
 				this.errorMessage = error;
-				console.log(this.errorMessage);
 			}
 		);
 	}

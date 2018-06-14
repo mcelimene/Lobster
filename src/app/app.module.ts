@@ -20,6 +20,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DemandesPage } from '../pages/home/demandes/demandes';
 import { RadarPage } from '../pages/radar/radar';
 import { Geolocation } from '@ionic-native/geolocation';
+import { UserService } from '../services/user.service';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { Geolocation } from '@ionic-native/geolocation';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthService,
-    Geolocation
+	Geolocation,
+	UserService
   ]
 })
 export class AppModule {}

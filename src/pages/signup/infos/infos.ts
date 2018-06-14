@@ -83,7 +83,10 @@ export class InfosPage {
 							sexe: this.select,
 							choix: this.choice
 						});
-					this.navCtrl.push(HomePage);
+					// Navigation vers la page Home en faisant passer l'id dans la route
+					this.navCtrl.setRoot(HomePage, {
+						id: firebase.auth().currentUser.uid
+					});
 				} else {
 					console.log("Aucun utilisateur connecté");
 				}
