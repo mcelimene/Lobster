@@ -10,13 +10,18 @@
 <ion-content padding>
 
 	<form (ngSubmit)="register()" [formGroup]="registerForm">
-		<!--<input  placeholder="photo">-->
 		<input type="date" placeholder="JJ/MM/YYYY" formControlName="birthday">
 		<input type="email" placeholder="email" formControlName="email">
 		<input type="text" placeholder="identifiant" formControlName="pseudo">
 		<input type="password" placeholder="mot de passe" formControlName="password">
 		<!--<input type="password" placeholder="confirmer mot de passe" >-->
-		<button type="submit" id="button" ion-button color="orange" round outline block [disabled]="registerForm.invalid">Suivant</button>
+
+		<!-- Photo de profil -->
+		<label id="label" for="photo">Photo de profil</label>
+		<input type="file" (change)="detectFiles($event)" id="photo" accept="image/*">
+		<!-- Bouton de validation -->
+		<button type="submit" id="button" ion-button color="orange" round outline block [disabled]="isThisDisabled()">Suivant</button>
+		<p *ngIf="fileUploaded">Fichier chargé</p>
 	</form>
 
 </ion-content>

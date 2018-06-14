@@ -13,13 +13,19 @@ import * as firebase from "firebase";
 export class SignupPage implements OnInit {
 	public registerForm: FormGroup;
 	public errorMessage: string;
+	// Fichier en cours de téléchargement
+	public fileIsUploading = false;
+	// Url du fichier
+	public fileUrl: string;
+	// Fichier téléchargé
+	public fileUploaded = false;
 
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams,
 		private authService: AuthService,
 		private formBuilder: FormBuilder
-	) {}
+	) { }
 
 	last() {
 		this.navCtrl.push(InfosPage);
@@ -39,6 +45,28 @@ export class SignupPage implements OnInit {
 			birthday: ["", [Validators.required]],
 			pseudo: ["", [Validators.required]]
 		});
+	}
+
+	// Fonction de téléchargement de l'image
+	onUploadFile(file: File) {
+		// Fichier en cours de téléchargement
+		this.fileIsUploading = true;
+
+		this.authService.uploadFile(file).then(
+			(url: string) => {
+				this.fileUrl = url;
+				this.fileIsUploading = false;
+				this.fileUploaded = true;
+			}
+		);
+	}
+
+	// Fonction lancée lors d'un changement d'état dans la vue
+	detectFiles(event) {
+		console.log(event);
+		// Lancement de la fonction de téléchargement de l'image
+		this.onUploadFile(event.target.files[0]);
+
 	}
 
 	register() {
@@ -64,6 +92,24 @@ export class SignupPage implements OnInit {
 				console.log(this.errorMessage);
 			}
 		);
+	}
+
+	// Bouton désactivé jusqu'à ce que le formulaire soit valide et que l'image soit chargée
+	isThisDisabled() {
+		// Si le formulaire est invalide
+		if (this.registerForm.invalid) {
+			// Bouton désactivé
+			return true;
+		} else {
+			// Sinon, si l'image est chargée
+			if (!this.fileUploaded) {
+				// Bouton désactivé
+				return true;
+			} else {
+				// SInon, bouton activé
+				return false;
+			}
+		}
 	}
 }
 
