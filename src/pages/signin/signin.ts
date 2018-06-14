@@ -54,17 +54,11 @@ export class SigninPage implements OnInit {
 			},
 			error => {
 				if (error["code"] === "auth/invalid-email") {
-					this.errorMessage = "Adresse email incorrecte";
-					console.log(this.errorMessage);
 					this.presentToast("Adresse email incorrecte");
 				} else if (error["code"] === "auth/user-not-found") {
-					this.errorMessage = "Utilisateur introuvable";
 					this.presentToast("Utilisateur introuvable");
-					console.log(this.errorMessage);
 				} else if (error["code"] === "auth/wrong-password") {
-					this.errorMessage = "Mot de passe incorrect";
 					this.presentToast("Mot de passe incorrect");
-					console.log(this.errorMessage);
 				}
 			}
 		);

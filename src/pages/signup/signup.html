@@ -1,61 +1,22 @@
-<ion-header *ngIf="!auth">
+<ion-header>
+
 	<ion-navbar color="orange">
 		<ion-title>Inscription</ion-title>
 	</ion-navbar>
-</ion-header>
 
-<ion-content padding *ngIf="!auth">
-	<input placeholder="photo">
-	<input placeholder="JJ/MM/AAAA">
-	<input placeholder="email">
-	<input placeholder="identifiant">
-	<input placeholder="mot de passe">
-	<input placeholder="confirmer mot de passe">
-	<button id="button" ion-button color="orange" round outline block (click)=last()>Suivant</button>
-</ion-content>
-
-<ion-header *ngIf="auth">
-	<ion-navbar color="orange">
-		<ion-title>Inscription</ion-title>
-	</ion-navbar>
 </ion-header>
 
 
-<ion-content padding *ngIf="auth">
+<ion-content padding>
 
-	<ion-grid ion-text color='orange'>
-		<ion-row text-center>
-			<ion-col>
-				<h2>Je suis</h2>
-			</ion-col>
-		</ion-row>
-		<ion-row text-center>
-			<ion-col>
-				<img id='profils' src='assets/imgs/femme.png' alt=''>
-				<h3>une femme</h3>
-			</ion-col>
-			<ion-col>
-				<img id='profils' src='assets/imgs/homme.png' alt=''>
-				<h3>un homme</h3>
-			</ion-col>
-		</ion-row>
-		<ion-row id="line2" text-center>
-			<ion-col>
-				<h2>Je cherche</h2>
-			</ion-col>
-		</ion-row>
-		<ion-row text-center>
-			<ion-col>
-				<img id='profils' src='assets/imgs/femme.png' alt=''>
-				<h3>une femme</h3>
-			</ion-col>
-			<ion-col>
-				<img id='profils' src='assets/imgs/homme.png' alt=''>
-				<h3>un homme</h3>
-			</ion-col>
-		</ion-row>
-
-	</ion-grid>
-	<button ion-button color="orange" round outline block (click)=last()>Suivant</button>
+	<form (ngSubmit)="register()" [formGroup]="registerForm">
+		<!--<input  placeholder="photo">-->
+		<input type="date" placeholder="JJ/MM/YYYY" formControlName="birthday">
+		<input type="email" placeholder="email" formControlName="email">
+		<input type="text" placeholder="identifiant" formControlName="pseudo">
+		<input type="password" placeholder="mot de passe" formControlName="password">
+		<!--<input type="password" placeholder="confirmer mot de passe" >-->
+		<button type="submit" id="button" ion-button color="orange" round outline block [disabled]="registerForm.invalid">Suivant</button>
+	</form>
 
 </ion-content>
