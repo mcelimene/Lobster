@@ -57,16 +57,15 @@ export class SignupPage implements OnInit {
 				this.fileUrl = url;
 				this.fileIsUploading = false;
 				this.fileUploaded = true;
+				this.authService.presentToast("Photo chargée");
 			}
 		);
 	}
 
 	// Fonction lancée lors d'un changement d'état dans la vue
 	detectFiles(event) {
-		console.log(event);
 		// Lancement de la fonction de téléchargement de l'image
 		this.onUploadFile(event.target.files[0]);
-
 	}
 
 	register() {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { IonicPage, NavController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { AuthService } from '../../services/auth.service';
 
@@ -16,18 +16,8 @@ export class SigninPage implements OnInit {
 	constructor(
 		private formBuilder: FormBuilder,
 		private authService: AuthService,
-		private navCtrl: NavController,
-		public toastCtrl: ToastController
+		private navCtrl: NavController
 	) {}
-
-	presentToast(message: string) {
-		const toast = this.toastCtrl.create({
-			message: message,
-			duration: 3000,
-			position: 'middle'
-		});
-		toast.present();
-	}
 
 	ngOnInit() {
 		this.initForm();
@@ -54,11 +44,11 @@ export class SigninPage implements OnInit {
 			},
 			error => {
 				if (error["code"] === "auth/invalid-email") {
-					this.presentToast("Adresse email incorrecte");
+					this.authService.presentToast("Adresse email incorrecte");
 				} else if (error["code"] === "auth/user-not-found") {
-					this.presentToast("Utilisateur introuvable");
+					this.authService.presentToast("Utilisateur introuvable");
 				} else if (error["code"] === "auth/wrong-password") {
-					this.presentToast("Mot de passe incorrect");
+					this.authService.presentToast("Mot de passe incorrect");
 				}
 			}
 		);

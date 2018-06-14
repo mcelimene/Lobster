@@ -21,7 +21,6 @@
 		<input type="file" (change)="detectFiles($event)" id="photo" accept="image/*">
 		<!-- Bouton de validation -->
 		<button type="submit" id="button" ion-button color="orange" round outline block [disabled]="isThisDisabled()">Suivant</button>
-		<p *ngIf="fileUploaded">Fichier chargé</p>
 	</form>
 
 </ion-content>
