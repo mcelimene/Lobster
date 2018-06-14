@@ -4,6 +4,7 @@ import { IonicPage, NavController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { AuthService } from '../../services/auth.service';
 import * as firebase from 'firebase';
+import { UserService } from '../../services/user.service';
 
 @IonicPage()
 @Component({
@@ -17,7 +18,8 @@ export class SigninPage implements OnInit {
 	constructor(
 		private formBuilder: FormBuilder,
 		private authService: AuthService,
-		private navCtrl: NavController
+		private navCtrl: NavController,
+		private userService: UserService
 	) {}
 
 	ngOnInit() {
@@ -47,11 +49,11 @@ export class SigninPage implements OnInit {
 			},
 			error => {
 				if (error["code"] === "auth/invalid-email") {
-					this.authService.presentToast("Adresse email incorrecte");
+					this.userService.presentToast("Adresse email incorrecte");
 				} else if (error["code"] === "auth/user-not-found") {
-					this.authService.presentToast("Utilisateur introuvable");
+					this.userService.presentToast("Utilisateur introuvable");
 				} else if (error["code"] === "auth/wrong-password") {
-					this.authService.presentToast("Mot de passe incorrect");
+					this.userService.presentToast("Mot de passe incorrect");
 				}
 			}
 		);

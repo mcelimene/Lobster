@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams } from "ionic-angular";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { AuthService } from "../../services/auth.service";
 import { InfosPage } from "./infos/infos";
-import * as firebase from "firebase";
+import { UserService } from "../../services/user.service";
 
 @IonicPage()
 @Component({
@@ -11,8 +11,8 @@ import * as firebase from "firebase";
 	templateUrl: "signup.html"
 })
 export class SignupPage implements OnInit {
+	// Formulaire (méthode réactive)
 	public registerForm: FormGroup;
-	public errorMessage: string;
 	// Fichier en cours de téléchargement
 	public fileIsUploading = false;
 	// Url du fichier
@@ -24,25 +24,31 @@ export class SignupPage implements OnInit {
 		public navCtrl: NavController,
 		public navParams: NavParams,
 		private authService: AuthService,
-		private formBuilder: FormBuilder
-	) { }
-
-	last() {
-		this.navCtrl.push(InfosPage);
-	}
+		private formBuilder: FormBuilder,
+		private userService: UserService
+	) {}
 
 	ngOnInit() {
+		// Initialisation du formulaire
 		this.initForm();
 	}
 
+	// Initialisation du formulaire
 	initForm() {
 		this.registerForm = this.formBuilder.group({
+			// Email requis, type email demandé
 			email: ["", [Validators.required, Validators.email]],
+			// Mot de passe requis, au moins 6 caractères
 			password: [
 				"",
-				[Validators.required, Validators.pattern(/[0-9a-zA-Z]{6,}/)]
+				[
+					Validators.required,
+					Validators.pattern(/[0-9a-zA-Z]{6,}/)
+				]
 			],
+			// Date de naissance requise
 			birthday: ["", [Validators.required]],
+			// Pseudo requis
 			pseudo: ["", [Validators.required]]
 		});
 	}
@@ -51,13 +57,17 @@ export class SignupPage implements OnInit {
 	onUploadFile(file: File) {
 		// Fichier en cours de téléchargement
 		this.fileIsUploading = true;
-
-		this.authService.uploadFile(file).then(
+		// Téléchargemet de l'image
+		this.userService.uploadFile(file).then(
 			(url: string) => {
-				this.fileUrl = url;
-				this.fileIsUploading = false;
-				this.fileUploaded = true;
-				this.authService.presentToast("Photo chargée");
+			// Récupération de l'url de l'image après téléchargement
+			this.fileUrl = url;
+			// Téléchargement termné
+			this.fileIsUploading = false;
+			// Photo téléchargée
+			this.fileUploaded = true;
+			// Popup indiquant que la photo a été chargée
+			this.userService.presentToast("Photo chargée");
 			}
 		);
 	}
@@ -68,26 +78,27 @@ export class SignupPage implements OnInit {
 		this.onUploadFile(event.target.files[0]);
 	}
 
-	register() {
+	onSaveUser() {
+		// Récupération des données du formulaire
 		const birthday = this.registerForm.get("birthday").value;
 		const email = this.registerForm.get("email").value;
 		const password = this.registerForm.get("password").value;
 		const pseudo = this.registerForm.get("pseudo").value;
+		// Initialisation des données non encore fournies
+		// const choix = "";
+		// const sexe = "";
 
+		// Enregistrement de l'utilisateur après l'enregistrement de l'authentification
 		this.authService.signUpUser(email, password).then(
 			() => {
-				let userCurrent = firebase.auth().currentUser;
-				firebase
-					.database()
-					.ref("user-list/" + userCurrent.uid)
-					.set({
-						birthday: birthday,
-						pseudo: pseudo
-					});
+				// Enregistement des données de l'utilisateur par le noeud de son ID
+				this.userService.createUser(birthday, pseudo);
+				// Redirection vers la deuxième page d'authentification
 				this.navCtrl.push(InfosPage);
 			},
-			error => {
-				this.errorMessage = error;
+			(error) => {
+				// Affichage des erreurs
+				console.log(error);
 			}
 		);
 	}
