@@ -6,7 +6,7 @@
 
 <ion-content padding text-center class="center">
 	<img text-center id='logo' src='assets/imgs/logolobster.png' alt='logo de lobster'>
-	<form (ngSubmit)="signin()" [formGroup]="signinForm">
+	<form (ngSubmit)="onSignin()" [formGroup]="signinForm">
 
 		<!-- Email -->
 		<input type="email" placeholder="email" formControlName="email">

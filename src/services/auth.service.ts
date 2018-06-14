@@ -15,11 +15,15 @@ export class AuthService {
 					() => {
 						resolve();
 					},
-					error => {
+					(error)=> {
 						reject(error);
 					}
 				);
 		});
+	}
+
+	currentId() {
+		return firebase.auth().currentUser.uid;
 	}
 
 	// Connexion d'un utilisateur par email et mot de passe
@@ -38,6 +42,7 @@ export class AuthService {
 				);
 		});
 	}
+
 
 
 }

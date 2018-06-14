@@ -1,14 +1,17 @@
-import { Component, ElementRef, ViewChild } from "@angular/core";
+import { Component, ElementRef, ViewChild, OnInit } from "@angular/core";
 import { IonicPage, NavController, NavParams } from "ionic-angular";
 import { HomePage } from "../../home/home";
-import * as firebase from "firebase";
+import { User } from "../../../models/User.model";
+import { UserService } from "../../../services/user.service";
 
 @IonicPage()
 @Component({
 	selector: "page-infos",
 	templateUrl: "infos.html"
 })
-export class InfosPage {
+export class InfosPage implements OnInit {
+	user: User;
+	id: string;
 	public womanSelect: boolean = false;
 	public manSelect: boolean = false;
 	public select: string;
@@ -21,7 +24,14 @@ export class InfosPage {
 	@ViewChild("womanChoice") public womanChoice: ElementRef;
 	@ViewChild("manChoice") public manChoice: ElementRef;
 
-	constructor(public navCtrl: NavController, public navParams: NavParams) {}
+	constructor(public navCtrl: NavController,
+				public navParams: NavParams,
+				public userService: UserService) {}
+
+	ngOnInit()  {
+		this.user = this.navParams.get("user");
+		this.id = this.navParams.get("id");
+	}
 
 	getWoman() {
 		if (this.manSelect) {
@@ -71,26 +81,17 @@ export class InfosPage {
 		return this.manChoiceSelect;
 	}
 
-	signUpNext() {
-		return new Promise((resolve, reject) => {
-			firebase.auth().onAuthStateChanged(user => {
-				if (user) {
-					let userCurrent = firebase.auth().currentUser;
-					firebase
-						.database()
-						.ref("user-list/" + userCurrent.uid)
-						.update({
-							sexe: this.select,
-							choix: this.choice
-						});
-					// Navigation vers la page Home en faisant passer l'id dans la route
-					this.navCtrl.setRoot(HomePage, {
-						id: firebase.auth().currentUser.uid
-					});
-				} else {
-					console.log("Aucun utilisateur connecté");
-				}
-			});
+	onUpdateUser() {
+		// Assignation des données recueillies à l'objet l'utilisateur
+		this.user.sexe = this.select;
+		this.user.choix = this.choice;
+		// Mise à jour des données de l'utilisateur
+		this.userService.updateUser(this.id, this.user);
+		// Navigation vers la page Home
+		this.navCtrl.push(HomePage, {
+			// Passage des paramètres dans la route
+			user: this.user,
+			id: this.id
 		});
 	}
 }

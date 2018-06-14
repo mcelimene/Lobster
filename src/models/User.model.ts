@@ -4,6 +4,7 @@ export class User {
 		public pseudo: string,
 		public birthday: string,
 		public choix: string,
-		public sexe: string) {
+		public sexe: string,
+		public photo: string) {
     }
 }

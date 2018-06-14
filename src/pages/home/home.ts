@@ -23,7 +23,7 @@ export class HomePage implements OnInit {
 
 	ngOnInit() {
 		// Création d'un utilisateur vide
-		this.user = new User("", "", "", "");
+		this.user = new User("", "", "", "", "");
 		// Récupération de l'Id de l'utilisateur
 		this.userId = this.navParams.get("id");
 		// Récupération du profil à partir de l'id

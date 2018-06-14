@@ -10,15 +10,20 @@ export class UserService {
 	constructor(public toastCtrl: ToastController) {}
 
 	// Enregistement d'un utilisateur dans la base de données
-	createUser(birthday, pseudo) {
+	createUser(user: User) {
 		let userCurrent = firebase.auth().currentUser;
 		firebase
 			.database()
 			.ref("user-list/" + userCurrent.uid)
-			.set({
-				birthday: birthday,
-				pseudo: pseudo
-			});
+			.set(user);
+	}
+
+	// Enregistement d'un utilisateur dans la base de données
+	updateUser(id: string, user: User) {
+		firebase
+			.database()
+			.ref("user-list/" + id)
+			.update(user);
 	}
 
 	// Récupération d'un utilisateur
