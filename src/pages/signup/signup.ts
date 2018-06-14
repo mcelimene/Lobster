@@ -122,7 +122,7 @@ export class SignupPage implements OnInit {
 			() => {
 				// Enregistement des données de l'utilisateur par le noeud de son ID
 				this.userService.createUser(this.user);
-				let id = this.authService.currentId;
+				let id = this.authService.currentId();
 				// Redirection vers la deuxième page d'authentification
 				this.navCtrl.push(InfosPage, {
 					// Passage des paramètres dans la route
