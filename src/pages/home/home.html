@@ -1,6 +1,6 @@
 <ion-header>
 	<ion-navbar hideBackButton color="orange">
-		<ion-title text-center>Profil</ion-title>
+		<ion-title text-center>LOBSTER</ion-title>
 	</ion-navbar>
 </ion-header>
 
@@ -12,44 +12,27 @@
 					<ion-avatar>
 						<img id="imgAvatar" src="assets/imgs/avatar1.png">
 					</ion-avatar>
-					<h2 ion-text text-center color="orange">{{ user.pseudo }}</h2>
+					<p id="pseudo" ion-text text-center color="orange">{{ user.pseudo }}</p>
 				</ion-item>
 			</ion-col>
 		</ion-row>
 
 		<ion-row justify-content-center align-items-center style="height: 100%">
-			<ion-col col>
-				<ion-item no-lines (click)="goToProfil()">
-					<ion-thumbnail>
-						<img id="img1" src="assets/imgs/profils.png">
-					</ion-thumbnail>
-				</ion-item>
-
+			<ion-col>
+				<img id="img1" src="assets/imgs/profils.png" (click)="goToProfil()">
 			</ion-col>
-			<ion-col col>
-				<ion-item no-lines (click)="goToRadar()">
-					<ion-thumbnail>
-						<img id="img2" src="assets/imgs/radar.png">
-					</ion-thumbnail>
-				</ion-item>
+			<ion-col>
+				<img id="img2" src="assets/imgs/radar.png" (click)="goToRadar()">
 			</ion-col>
 		</ion-row>
 
 		<ion-row justify-content-center align-items-center style="height: 100%">
-			<ion-col col>
-				<ion-item no-lines (click)="goToMessages()">
-					<ion-thumbnail>
-						<img id="img3" src="assets/imgs/messages.png">
-					</ion-thumbnail>
-				</ion-item>
+			<ion-col>
+				<img id="img3" src="assets/imgs/messages.png" (click)="goToMessages()">
 			</ion-col>
-			<ion-col col>
-				<ion-item no-lines (click)="goToDemandes()">
-					<ion-thumbnail>
-						<img id="img4" src="assets/imgs/demandes.png">
-					</ion-thumbnail>
-				</ion-item>
-			</ion-col>
+			<ion-col>
+ 				<img id="img4" src="assets/imgs/demandes.png" (click)="goToDemandes()">
+ 			</ion-col>
 		</ion-row>
 
 	</ion-grid>

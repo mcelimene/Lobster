@@ -5,14 +5,15 @@
 </ion-header>
 
 <ion-content>
-	<ion-list ion-item *ngFor="let item of items" inset>
+
 
 		<ion-grid ion-text color='orange'>
 			<ion-row>
 				<ion-col>
-					<h1>{{item.pseudo}}</h1>
-					<h2>{{item.age}}</h2>
-					<h2>{{item.sexe}}</h2>
+					<h1>{{user.pseudo}}</h1>
+					<h2>{{user.choix}}</h2>
+					<h2>{{user.sexe}}</h2>
+					<h2>{{user.birthday}}</h2>
 				</ion-col>
 				<ion-col>
 					<img id='profils' src='assets/imgs/avatar1.png' alt='photo de profils'>
@@ -20,15 +21,15 @@
 			</ion-row>
 
 		</ion-grid>
-		<hr>
-		<div ion-text color='orange'>
-			<h2>{{item.description}}</h2>
-			<!--<img id='modif' src='../assets/imgs/modif.png' alt='modif'>-->
-			<h2>Je recherche{{item.orientation}}</h2>
-			<h2>{{item.aime}}</h2>
-			<h2>{{item.aimepas}}</h2>
-		</div>
+<!-- 		<hr>
+<div ion-text color='orange'>
+	<h2>{{item.description}}</h2>
+	<img id='modif' src='../assets/imgs/modif.png' alt='modif'>
+	<h2>Je recherche{{item.orientation}}</h2>
+	<h2>{{item.aime}}</h2>
+	<h2>{{item.aimepas}}</h2>
+</div> -->
 
-	</ion-list>
+
 
 </ion-content>
