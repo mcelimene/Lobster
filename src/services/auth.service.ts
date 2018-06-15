@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase';
-import { ToastController } from 'ionic-angular';
 
 @Injectable()
 export class AuthService {
-	constructor(public toastCtrl: ToastController) {}
+	constructor() {}
 
+	// Enregistrement d'un utilisateur dans la base de données
 	signUpUser(email: string, password: string) {
 		return new Promise((resolve, reject) => {
 			firebase
@@ -15,37 +15,18 @@ export class AuthService {
 					() => {
 						resolve();
 					},
-					error => {
+					(error)=> {
 						reject(error);
 					}
 				);
 		});
 	}
 
-	uploadFile(file: File) {
-		return new Promise((resolve, reject) => {
-			const almostUniqueFileName = Date.now().toString();
-			const upload = firebase
-				.storage()
-				.ref()
-				.child("img/" + almostUniqueFileName + file.name)
-				.put(file);
-			upload.on(
-				firebase.storage.TaskEvent.STATE_CHANGED,
-				() => {
-					console.log("Chargement…");
-				},
-				error => {
-					console.log("Erreur de chargement ! : " + error);
-					reject();
-				},
-				() => {
-					resolve(upload.snapshot.ref.getDownloadURL());
-				}
-			);
-		});
+	currentId() {
+		return firebase.auth().currentUser.uid;
 	}
 
+	// Connexion d'un utilisateur par email et mot de passe
 	signInUser(email: string, password: string) {
 		return new Promise((resolve, reject) => {
 			firebase
@@ -62,12 +43,6 @@ export class AuthService {
 		});
 	}
 
-	presentToast(message: string) {
-		const toast = this.toastCtrl.create({
-			message: message,
-			duration: 3000,
-			position: "middle"
-		});
-		toast.present();
-	}
+
+
 }

@@ -9,7 +9,7 @@
 
 <ion-content padding>
 
-	<form (ngSubmit)="register()" [formGroup]="registerForm">
+	<form (ngSubmit)="onSaveUser()" [formGroup]="registerForm">
 		<input type="date" placeholder="JJ/MM/YYYY" formControlName="birthday">
 		<input type="email" placeholder="email" formControlName="email">
 		<input type="text" placeholder="identifiant" formControlName="pseudo">

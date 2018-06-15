@@ -1,28 +1,82 @@
-import { Injectable } from '@angular/core';
-import { User } from '../models/User.model';
-import * as firebase from 'firebase';
+import { Injectable } from "@angular/core";
+import { User } from "../models/User.model";
+import * as firebase from "firebase";
 import DataSnapshot = firebase.database.DataSnapshot;
+import { ToastController } from "ionic-angular";
 
 @Injectable()
 export class UserService {
 
-	user: User;
+	constructor(public toastCtrl: ToastController) {}
 
-	constructor() { }
+	// Enregistement d'un utilisateur dans la base de données
+	createUser(user: User) {
+		let userCurrent = firebase.auth().currentUser;
+		firebase
+			.database()
+			.ref("user-list/" + userCurrent.uid)
+			.set(user);
+	}
 
+	// Enregistement d'un utilisateur dans la base de données
+	updateUser(id: string, user: User) {
+		firebase
+			.database()
+			.ref("user-list/" + id)
+			.update(user);
+	}
+
+	// Récupération d'un utilisateur
 	getUser(id: string) {
-		return new Promise(
-			(resolve, reject) => {
-				firebase.database().ref('/user-list/' + id).once('value').then(
+		// Création d'une promesse pour la récupération d'un utilisateur
+		return new Promise((resolve, reject) => {
+			firebase
+				.database()
+				.ref("/user-list/" + id)
+				.once("value")
+				.then(
 					(data: DataSnapshot) => {
 						resolve(data.val());
-
 					},
-					(error) => {
+					error => {
 						reject(error);
 					}
-				)
-			}
-		)
+				);
+		});
+	}
+
+	// Téléchargement et enregistrement de la photo
+	uploadFile(file: File) {
+		return new Promise((resolve, reject) => {
+			const almostUniqueFileName = Date.now().toString();
+			const upload = firebase
+				.storage()
+				.ref()
+				.child("images/" + almostUniqueFileName + file.name)
+				.put(file);
+			upload.on(
+				firebase.storage.TaskEvent.STATE_CHANGED,
+				() => {
+					console.log("Chargement…");
+				},
+				error => {
+					console.log("Erreur de chargement ! : " + error);
+					reject();
+				},
+				() => {
+					resolve(upload.snapshot.ref.getDownloadURL());
+				}
+			);
+		});
+	}
+
+	// Popup
+	presentToast(message: string) {
+		const toast = this.toastCtrl.create({
+			message: message,
+			duration: 3000,
+			position: "middle"
+		});
+		toast.present();
 	}
 }

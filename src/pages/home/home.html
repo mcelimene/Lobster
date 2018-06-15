@@ -10,7 +10,7 @@
 			<ion-col>
 				<ion-item no-lines>
 					<ion-avatar>
-						<img id="imgAvatar" src="assets/imgs/avatar1.png">
+						<img id="imgAvatar" *ngIf="user.photo" [src]="user.photo">
 					</ion-avatar>
 					<p id="pseudo" ion-text text-center color="orange">{{ user.pseudo }}</p>
 				</ion-item>

@@ -3,7 +3,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { IonicPage, NavController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { AuthService } from '../../services/auth.service';
-import * as firebase from 'firebase';
+import { UserService } from '../../services/user.service';
+import { User } from '../../models/User.model';
 
 @IonicPage()
 @Component({
@@ -13,17 +14,21 @@ import * as firebase from 'firebase';
 export class SigninPage implements OnInit {
 	public signinForm: FormGroup;
 	public errorMessage: string;
+	public user: User;
 
 	constructor(
 		private formBuilder: FormBuilder,
 		private authService: AuthService,
-		private navCtrl: NavController
+		private navCtrl: NavController,
+		private userService: UserService
 	) {}
 
+	// Initialisation du formulaire
 	ngOnInit() {
 		this.initForm();
 	}
 
+	// Initialisation du formulaire
 	initForm() {
 		this.signinForm = this.formBuilder.group({
 			email: ["", [Validators.required, Validators.email]],
@@ -34,24 +39,37 @@ export class SigninPage implements OnInit {
 		});
 	}
 
-	signin() {
+	onSignin() {
+
+		// Récupération des données du formulaire
 		const email = this.signinForm.get("email").value;
 		const password = this.signinForm.get("password").value;
 
+		// Connexion de l'utilisateur
 		this.authService.signInUser(email, password).then(
 			() => {
 				console.log("connecté");
-				this.navCtrl.setRoot(HomePage, {
-					id: firebase.auth().currentUser.uid
-				});
+				let id = this.authService.currentId();
+				// Récupération du profil à partir de l'id
+				this.userService.getUser(id).then(
+					(user: User) => {
+						this.user = user;
+						// Redirection vers lla page Home
+						this.navCtrl.setRoot(HomePage, {
+						// Passage des paramètres dans la route
+							id: id,
+							user: this.user
+						});
+					}
+				);
 			},
 			error => {
 				if (error["code"] === "auth/invalid-email") {
-					this.authService.presentToast("Adresse email incorrecte");
+					this.userService.presentToast("Adresse email incorrecte");
 				} else if (error["code"] === "auth/user-not-found") {
-					this.authService.presentToast("Utilisateur introuvable");
+					this.userService.presentToast("Utilisateur introuvable");
 				} else if (error["code"] === "auth/wrong-password") {
-					this.authService.presentToast("Mot de passe incorrect");
+					this.userService.presentToast("Mot de passe incorrect");
 				}
 			}
 		);
