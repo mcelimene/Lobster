@@ -21,7 +21,6 @@ import { DemandesPage } from '../pages/home/demandes/demandes';
 import { RadarPage } from '../pages/radar/radar';
 import { Geolocation } from '@ionic-native/geolocation';
 import { UserService } from '../services/user.service';
-import { NativeStorage } from '@ionic-native/native-storage';
 
 @NgModule({
   declarations: [
@@ -65,8 +64,7 @@ import { NativeStorage } from '@ionic-native/native-storage';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthService,
 	Geolocation,
-	UserService,
-  NativeStorage
+	UserService
   ]
 })
 export class AppModule {}
