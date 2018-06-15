@@ -1,24 +1,32 @@
 page-home {
 	#imgAvatar {
-		width: 8em;
-		height: 8em;
-		margin: auto;
+ 		height: 11em;
+		width: 11em;
 	}
+
+	#pseudo {
+		font-size: 1.75em;
+		font-weight: bold;
+	}
+
 	#img1 {
 		height: 100%;
+		padding: 10% 25%;		
 		margin: auto;
 	}
 	#img2 {
 		height: 100%;
-		margin: auto;
+		padding: 10% 27%;		
+		margin: auto;		
 	}
 	#img3 {
 		height: 100%;
-		margin: auto;
+		padding: 10% 16%;
+		margin: auto;		
 	}
 	#img4 {
 		height: 100%;
-		margin: auto;
+		padding: 10% 15%;
+		margin: auto;		
 	}
-
 }

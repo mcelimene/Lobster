@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { AuthService } from '../../../services/auth.service';
+import { User } from '../../../models/User.model';
+import { UserService } from '../../../services/user.service';
+import { NativeStorage } from '@ionic-native/native-storage';
+import * as firebase from 'firebase';
 
 @Component({
 	selector: 'page-profil',
@@ -7,26 +12,29 @@ import { NavController } from 'ionic-angular';
 })
 export class ProfilPage {
 
-	constructor(public navCtrl: NavController) { }
+	user: User;
+	public userId: any;
 
-	//Json de la bdd pour mon profils.
-	items = [{
+	constructor(public navCtrl: NavController, 
+				public userService: UserService,
+				private nativeStorage: NativeStorage) { }
 
-		pseudo: 'McQueen75',
-		passeword: 'Password',
-		age: '23',
-		mail: 'julienbraga@hotmail.fr',
-		sexe: 'Homme',
-		orientation: ' des femmes',
-		description: 'Je suis un homme sérieux ',
-		aime: "J'aime les animaux",
-		aimepas: "Je n'aime pas le gâteau au chocolat"
-
-	}];
-
-	itemSelected(item: string) {
-		console.log("Selected Item", item);
-
+	ngOnInit() {
+		// Création d'un utilisateur vide
+		this.user = new User("", "", "", "");
+		// Récupération de l'Id de l'utilisateur
+/*		this.userId = this.navParams.get("id");*/
+		this.userId = firebase.auth().currentUser.uid;
+		// Récupération du profil à partir de l'id
+		this.userService.getUser(this.userId).then(
+			(user: User) => { this.user = user;	});
+		this.nativeStorage.setItem('User', 'prout')
+  		.then(
+    		() => console.log('Stored item!'),
+    		error => console.error('Error storing item', error)
+  		);
 	}
+
+
 
 }
