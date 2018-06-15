@@ -5,6 +5,7 @@ import { HomePage } from '../home/home';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/User.model';
+import { MenuPage } from '../menu/menu';
 
 @IonicPage()
 @Component({
@@ -54,8 +55,8 @@ export class SigninPage implements OnInit {
 				this.userService.getUser(id).then(
 					(user: User) => {
 						this.user = user;
-						// Redirection vers lla page Home
-						this.navCtrl.setRoot(HomePage, {
+						// Redirection vers la page Menu
+						this.navCtrl.setRoot(MenuPage, {
 						// Passage des paramètres dans la route
 							id: id,
 							user: this.user
