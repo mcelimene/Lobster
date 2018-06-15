@@ -35,19 +35,14 @@ export class RadarPage implements OnInit {
 					});
 
 				//recuperation bdd
-				// firebase.database()
-				// 	.ref('gps')
-				// 	.orderByChild('latitude')
-				// 	.startAt(this.latitude - 0.002)
-				// 	.endAt(this.latitude + 0.002)
-				// 	.once("child_moved", function (snapshot) {
-				// 		//longitude
-				// 		firebase.database().ref('gps/')
-				// 			.child(snapshot.key)
-				// 			.once("value", function (snap) {
-				// 				console.log(snap.key)
-				// 			})
-				// 	});
+				firebase.database()
+					.ref('gps')
+					.orderByChild('latitude')
+					.startAt(this.latitude - 0.002)
+					.endAt(this.latitude + 0.002)
+					.once("value", function (snapshot) {
+						console.log(snapshot.val())
+					});
 
 				//recherche les profils trouver
 			}
