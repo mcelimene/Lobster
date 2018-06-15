@@ -5,6 +5,7 @@ import { AuthService } from "../../services/auth.service";
 import { InfosPage } from "./infos/infos";
 import { UserService } from "../../services/user.service";
 import { User } from "../../models/User.model";
+// import { matchOtherValidator } from "@moebius/ng-validators";
 
 @IonicPage()
 @Component({
@@ -46,13 +47,30 @@ export class SignupPage implements OnInit {
 				"",
 				[
 					Validators.required,
-					Validators.pattern(/[0-9a-zA-Z]{6,}/)
+					// Validators.pattern(/[0-9a-zA-Z]{6,}/),
+					Validators.minLength(6),
+					Validators.pattern(/[0-9a-zA-Z-+=_.,:;~`!@#$%^&*(){}<>\[\]"'\/\\]{6,}/)
 				]
 			],
+			// confirmPassword: [
+			// 	"",
+			// 	[Validators.required, matchOtherValidator("password")]
+			// ],
 			// Date de naissance requise
-			birthday: ["", [Validators.required]],
+			birthday: [
+				null,
+				[
+					Validators.required
+				]
+			],
 			// Pseudo requis
-			pseudo: ["", [Validators.required]]
+			pseudo: [
+				"",
+				[
+					Validators.required,
+					Validators.pattern(/[0-9a-zA-Z-+=_.,:;~`!@#$%^&*(){}<>\[\]"'\/\\]{6,}/)
+				]
+			]
 		});
 	}
 
@@ -133,6 +151,17 @@ export class SignupPage implements OnInit {
 			(error) => {
 				// Affichage des erreurs
 				console.log(error);
+
+				// switch(error["code"]){
+				// 	case "auth/invalid-email":
+				// 		this.userService.presentToast("Adresse email incorrecte");
+				// 	break;
+				// 	case "auth/email-already-in-use":
+				// 		this.userService.presentToast("Adresse email déjà utilisée");
+				// 	break;
+				// }
+				console.log(error["code"]);
+				console.log(this.registerForm);
 			}
 		);
 	}
