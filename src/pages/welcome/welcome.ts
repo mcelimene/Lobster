@@ -13,10 +13,6 @@ export class WelcomePage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad WelcomePage');
-  }
-
   register() {
     this.navCtrl.push(SignupPage);
   }

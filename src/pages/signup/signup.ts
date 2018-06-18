@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { IonicPage, NavController, NavParams } from "ionic-angular";
+import { NavController, NavParams } from "ionic-angular";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { AuthService } from "../../services/auth.service";
 import { InfosPage } from "./infos/infos";
@@ -7,7 +7,6 @@ import { UserService } from "../../services/user.service";
 import { User } from "../../models/User.model";
 // import { matchOtherValidator } from "@moebius/ng-validators";
 
-@IonicPage()
 @Component({
 	selector: "page-signup",
 	templateUrl: "signup.html"

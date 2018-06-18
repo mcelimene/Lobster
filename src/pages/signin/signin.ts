@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { IonicPage, NavController } from 'ionic-angular';
-import { HomePage } from '../home/home';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/User.model';
-import { MenuPage } from '../menu/menu';
+import { TabsPage } from '../tabs/tabs';
 
 @IonicPage()
 @Component({
@@ -55,9 +54,10 @@ export class SigninPage implements OnInit {
 				this.userService.getUser(id).then(
 					(user: User) => {
 						this.user = user;
-						// Redirection vers la page Menu
-						this.navCtrl.setRoot(MenuPage, {
+						// Redirection vers la page Home
+						this.navCtrl.setRoot(TabsPage, {
 						// Passage des paramètres dans la route
+							index: 0,
 							id: id,
 							user: this.user
 						});

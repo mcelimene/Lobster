@@ -1,18 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { ProfilPage } from '../home/profil/profil';
 import { ConversationsPage } from '../home/conversations/conversations';
 import { DemandesPage } from '../home/demandes/demandes';
 import { RadarPage } from '../radar/radar';
 import { User } from '../../models/User.model';
 import { UserService } from '../../services/user.service';
+import { TabsPage } from '../tabs/tabs';
 
 @Component({
 	selector: "page-home",
 	templateUrl: "home.html"
 })
 export class HomePage implements OnInit {
+	// Utilisateur
 	user: User;
+	// Id de l'utilisateur passé dans la route
 	public userId: "string";
 
 	constructor(
@@ -22,19 +24,20 @@ export class HomePage implements OnInit {
 	) {}
 
 	ngOnInit() {
-		// Création d'un utilisateur vide
-		this.user = new User("", "", "", "", "");
+		// Récupération de l'utilisateur
+		this.user = this.navParams.get("user");
 		// Récupération de l'Id de l'utilisateur
 		this.userId = this.navParams.get("id");
-		// Récupération du profil à partir de l'id
-		this.userService.getUser(this.userId).then(
-			(user: User) => {
-			this.user = user;
-		});
 	}
 
 	goToProfil() {
-		this.navCtrl.push(ProfilPage);
+		// Redirection vers la page Profil
+		this.navCtrl.push(TabsPage, {
+			// Passage des paramètres dans la route
+			index: 1,
+			id: this.userId,
+			user: this.user
+		});
 	}
 
 	goToRadar() {

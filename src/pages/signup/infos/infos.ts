@@ -1,10 +1,10 @@
 import { Component, ElementRef, ViewChild, OnInit } from "@angular/core";
-import { IonicPage, NavController, NavParams } from "ionic-angular";
+import { NavController, NavParams } from "ionic-angular";
 import { HomePage } from "../../home/home";
 import { User } from "../../../models/User.model";
 import { UserService } from "../../../services/user.service";
 
-@IonicPage()
+
 @Component({
 	selector: "page-infos",
 	templateUrl: "infos.html"
