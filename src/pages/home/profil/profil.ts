@@ -31,7 +31,7 @@ export class ProfilPage {
 		// Passage des paramètres dans la route
 		this.params = { user: this.user, id: this.userId };
 		// Calcul de l'age
-		this.userAge = this.userService.getAge(this.user.birthday);
+		this.userAge = this.userService.getAge(this.user.birthDay, this.user.birthMonth, this.user.birthYear);
 		// Variables pour l'affichage du genre et du choix
 		this.isMan = this.user.sexe === "homme";
 		this.wantMan = this.user.choix === "homme";
