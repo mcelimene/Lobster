@@ -1,7 +1,7 @@
 page-signup {
 	position:relative;
 
-	input{
+	input, #date {
 		text-align: center;
 		border: none;
 		border-radius:30px;
@@ -9,6 +9,16 @@ page-signup {
 		margin: 5%;
 		padding: 1em;
 		background-color: rgb(242,241,239);
+	}
+
+	#date {
+		padding: 1em 2px;
+		margin: 5% 0;
+	}
+
+	.item-ios {
+		font-size: 1.0em;
+		width: 100%;
 	}
 
 	#button {
