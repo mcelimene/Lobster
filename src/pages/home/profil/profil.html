@@ -1,29 +1,22 @@
-<ion-content>
-
-
-		<ion-grid ion-text color='orange'>
-			<ion-row>
-				<ion-col>
-					<h1>{{user.pseudo}}</h1>
-					<h2>{{user.choix}}</h2>
-					<h2>{{user.sexe}}</h2>
-					<h2>{{user.birthday}}</h2>
-				</ion-col>
-				<ion-col>
-					<img id='profils' src='assets/imgs/avatar1.png' alt='photo de profils'>
-				</ion-col>
-			</ion-row>
-
-		</ion-grid>
-<!-- 		<hr>
-<div ion-text color='orange'>
-	<h2>{{item.description}}</h2>
-	<img id='modif' src='../assets/imgs/modif.png' alt='modif'>
-	<h2>Je recherche{{item.orientation}}</h2>
-	<h2>{{item.aime}}</h2>
-	<h2>{{item.aimepas}}</h2>
-</div> -->
-
-
-
+<ion-content padding>
+	<ion-grid>
+		<ion-row justify-content-center align-items-center>
+			<ion-col>
+				<ion-item no-lines>
+					<ion-avatar>
+						<img id="imgAvatar" *ngIf="user.photo" [src]="user.photo">
+					</ion-avatar>
+					<h1 id="pseudo" ion-text text-center color="orange">{{ user.pseudo }}</h1>
+					<p id="birthday" ion-text text-center color="orange">{{ user.birthday }}</p>
+					<ion-avatar>
+						<img class="sexe" *ngIf="user.sexe == 'homme'" src="assets/imgs/homme.png">
+						<img class="sexe" *ngIf="user.sexe == 'femme'" src="assets/imgs/femme.png">
+					</ion-avatar>
+					<hr>
+					<p id="choix" ion-text text-center *ngIf="user.sexe == 'femme'" color="orange">Intéressée par les {{ user.choix + 's'}}</p>
+					<p id="choix" ion-text text-center *ngIf="user.sexe == 'homme'" color="orange">Intéressé par les {{ user.choix + 's'}}</p>
+				</ion-item>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
 </ion-content>
