@@ -5,7 +5,6 @@ import { ConversationsPage } from '../home/conversations/conversations';
 import { DemandesPage } from '../home/demandes/demandes';
 import { RadarPage } from '../radar/radar';
 import { User } from '../../models/User.model';
-import { UserService } from '../../services/user.service';
 
 @Component({
 	selector: "page-home",
@@ -13,12 +12,11 @@ import { UserService } from '../../services/user.service';
 })
 export class HomePage implements OnInit {
 	user: User;
-	public userId: "string";
+	userId: string;
 
 	constructor(
 		public navCtrl: NavController,
-		public navParams: NavParams,
-		public userService: UserService
+		public navParams: NavParams
 	) {}
 
 	ngOnInit() {
@@ -26,15 +24,17 @@ export class HomePage implements OnInit {
 		this.user = new User("", "", "", "", "");
 		// Récupération de l'Id de l'utilisateur
 		this.userId = this.navParams.get("id");
-		// Récupération du profil à partir de l'id
-		this.userService.getUser(this.userId).then(
-			(user: User) => {
-			this.user = user;
-		});
+		// Récupération de user
+		this.user = this.navParams.get("user");
 	}
 
 	goToProfil() {
-		this.navCtrl.push(ProfilPage);
+		// Navigation vers la page Profil
+		this.navCtrl.push(ProfilPage, {
+			// Passage des paramètres dans la route
+			user: this.user,
+			id: this.userId
+		});		
 	}
 
 	goToRadar() {
