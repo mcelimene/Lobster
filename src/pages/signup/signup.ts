@@ -5,7 +5,6 @@ import { AuthService } from "../../services/auth.service";
 import { InfosPage } from "./infos/infos";
 import { UserService } from "../../services/user.service";
 import { User } from "../../models/User.model";
-// import { matchOtherValidator } from "@moebius/ng-validators";
 
 @Component({
 	selector: "page-signup",

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import * as firebase from 'firebase';
 
-@IonicPage()
+
 @Component({
 	selector: 'page-radar',
 	templateUrl: 'radar.html',
