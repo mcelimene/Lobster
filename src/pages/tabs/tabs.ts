@@ -34,7 +34,7 @@ export class TabsPage implements OnInit {
 		// Récupération de l'id de l'utilisateur
 		this.userId = this.navParams.get("id");
 		// Récupération de l'id de l'utilisateur
-		this.index = this.navParams.get("index");
+		this.index = this.navParams.get("index") || 0;
 
 		// Passage des paramètres dans la route
 		this.params = { user: this.user, id: this.userId };

@@ -21,6 +21,7 @@ import { DemandesPage } from '../pages/home/demandes/demandes';
 import { RadarPage } from '../pages/radar/radar';
 import { Geolocation } from '@ionic-native/geolocation';
 import { UserService } from '../services/user.service';
+import { MenuPage } from '../pages/menu/menu';
 
 @NgModule({
   declarations: [
@@ -35,11 +36,12 @@ import { UserService } from '../services/user.service';
 	InfosPage,
     WelcomePage,
     DemandesPage,
-	RadarPage
+	RadarPage,
+	MenuPage
   ],
   imports: [
     BrowserModule,
-	  IonicModule.forRoot(MyApp, { tabsPlacement: 'top' }),
+	  IonicModule.forRoot(MyApp, { tabsPlacement: 'bottom' }),
     FormsModule,
     ReactiveFormsModule,
   ],
@@ -56,7 +58,8 @@ import { UserService } from '../services/user.service';
 	InfosPage,
 	TabsPage,
     DemandesPage,
-	RadarPage
+	RadarPage,
+	MenuPage
   ],
   providers: [
     StatusBar,
