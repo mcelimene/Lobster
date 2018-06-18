@@ -62,7 +62,7 @@ export class SignupPage implements OnInit {
 			// 	[Validators.required, matchOtherValidator("password")]
 			// ],
 			// Date de naissance requise
-			birthday: [
+			birthDate: [
 				null,
 				[
 					Validators.required
@@ -125,7 +125,11 @@ export class SignupPage implements OnInit {
 	// Enregistrement de l'utilisateur et de ses informations
 	onSaveUser() {
 		// Récupération des données du formulaire
-		const birthday = this.registerForm.get("birthday").value;
+		const birthDate = this.registerForm.get("birthDate").value;
+		const birthYear = birthDate.substr(0,4);
+		const birthMonth = birthDate.substr(5, 2);
+    const birthDay = birthDate.substr(8, 2);
+
 		const email = this.registerForm.get("email").value;
 		const password = this.registerForm.get("password").value;
 		const pseudo = this.registerForm.get("pseudo").value;
@@ -138,12 +142,12 @@ export class SignupPage implements OnInit {
 			photo = this.fileUrl;
 		}
 		// Assignation des données recueillies à l'objet l'utilisateur
-		this.user = new User(pseudo, birthday, choix, sexe, photo);
+		this.user = new User(pseudo, birthDay, birthMonth, birthYear, choix, sexe, photo);
 
 		// Enregistrement de l'utilisateur après l'enregistrement de l'authentification
 		this.authService.signUpUser(email, password).then(
 			() => {
-				console.log(birthday);
+				console.log(birthDate);
 				// Enregistement des données de l'utilisateur par le noeud de son ID
 				this.userService.createUser(this.user);
 				let id = this.authService.currentId();

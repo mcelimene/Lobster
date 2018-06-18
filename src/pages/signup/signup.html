@@ -11,7 +11,7 @@
 
 	<form (ngSubmit)="onSaveUser()" [formGroup]="registerForm">
 		<ion-item no-lines>
-					<ion-datetime id="date" displayFormat="DD/MM/YYYY" placeholder="JJ/MM/YYYY" [max]="dateMin" formControlName="birthday"></ion-datetime>
+					<ion-datetime id="date" displayFormat="DD/MM/YYYY" placeholder="JJ/MM/YYYY" [max]="dateMin" formControlName="birthDate"></ion-datetime>
 		</ion-item>
 		<input type="email" placeholder="email" formControlName="email">
 		<input type="text" placeholder="identifiant (minimum 6 caractères)" formControlName="pseudo">
