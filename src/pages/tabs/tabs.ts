@@ -12,7 +12,6 @@ import { User } from '../../models/User.model';
 export class TabsPage implements OnInit {
 	home = HomePage;
 	profile = ProfilPage;
-	welcome = WelcomePage;
 	// Utilisateur
 	user: User;
 	// id de l'utilisateur passé dans la route
@@ -34,8 +33,7 @@ export class TabsPage implements OnInit {
 		// Récupération de l'id de l'utilisateur
 		this.userId = this.navParams.get("id");
 		// Récupération de l'id de l'utilisateur
-		this.index = this.navParams.get("index");
-
+		this.index = this.navParams.get("index") || 0;
 		// Passage des paramètres dans la route
 		this.params = { user: this.user, id: this.userId };
 	}

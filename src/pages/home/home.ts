@@ -4,7 +4,6 @@ import { ConversationsPage } from '../home/conversations/conversations';
 import { DemandesPage } from '../home/demandes/demandes';
 import { RadarPage } from '../radar/radar';
 import { User } from '../../models/User.model';
-import { UserService } from '../../services/user.service';
 import { TabsPage } from '../tabs/tabs';
 
 @Component({
@@ -15,12 +14,11 @@ export class HomePage implements OnInit {
 	// Utilisateur
 	user: User;
 	// Id de l'utilisateur passé dans la route
-	public userId: "string";
+	public userId: string;
 
 	constructor(
 		public navCtrl: NavController,
-		public navParams: NavParams,
-		public userService: UserService
+		public navParams: NavParams
 	) {}
 
 	ngOnInit() {

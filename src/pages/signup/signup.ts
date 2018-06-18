@@ -8,6 +8,7 @@ import { User } from "../../models/User.model";
 import * as moment from 'moment';
 // import { matchOtherValidator } from "@moebius/ng-validators";
 
+
 @Component({
 	selector: "page-signup",
 	templateUrl: "signup.html"

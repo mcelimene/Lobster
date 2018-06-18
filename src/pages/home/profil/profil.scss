@@ -1,13 +1,38 @@
-page-about {
+page-profil {
+
+	margin-top: 2em;
+
+	#imgProfil {
+	 	overflow:hidden;
+	    -webkit-border-radius:50%;
+	 	-moz-border-radius:50%;
+	    border-radius:50%;
+	    width:7em;
+	    height:7em;
+	    border: 2px solid #de4f31;
+	}
+
+	#profil {
+		padding-top: 15%;
+		padding-left: 10%;
+	}
+
+	.imgSexe {
+		width:3em;
+	    height:3em;
+	}
+	.interest {
+		color: #de4f31;
+		padding-top: 1.5em;
+	}
+
+	h1, h2 {
+		color: #de4f31;
+	}
+
+	.orange {
+		color: #de4f31;
+	}
 
 }
 
-#profils{
-	  overflow:hidden;
-    -webkit-border-radius:90px;
-    -moz-border-radius:90px;
-    border-radius:90px;
-    width:130px;
-    height:130px;
-
-}

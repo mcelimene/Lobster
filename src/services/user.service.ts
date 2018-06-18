@@ -79,4 +79,25 @@ export class UserService {
 		});
 		toast.present();
 	}
+
+	// Calcul l'age en fonction de la string YYYY-MM-DD et de la date courante
+	getAge(birth: string) {
+		let age: any;
+		let today = new Date();
+		let nowyear = today.getFullYear();
+		let nowmonth = today.getMonth();
+		let nowday = today.getDate();
+
+		let birthyear = birth.substr(0, 4);
+		let birthmonth = birth.substr(5, 2);
+		let birthday = birth.substr(8, 2);
+
+		let age_month = nowmonth - parseInt(birthmonth);
+		let age_day = nowday - parseInt(birthday);
+
+		if (age_month < 0 || (age_month == 0 && age_day < 0)) {
+			age = (nowyear - parseInt(birthyear)) - 1;
+		} else { age = nowyear - parseInt(birthyear); }
+		return age;
+	}
 }
