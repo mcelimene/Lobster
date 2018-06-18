@@ -1,8 +1,8 @@
 import { Component, ElementRef, ViewChild, OnInit } from "@angular/core";
 import { NavController, NavParams } from "ionic-angular";
-import { HomePage } from "../../home/home";
 import { User } from "../../../models/User.model";
 import { UserService } from "../../../services/user.service";
+import { TabsPage } from "../../tabs/tabs";
 
 
 @Component({
@@ -88,10 +88,11 @@ export class InfosPage implements OnInit {
 		// Mise à jour des données de l'utilisateur
 		this.userService.updateUser(this.id, this.user);
 		// Navigation vers la page Home
-		this.navCtrl.push(HomePage, {
+		this.navCtrl.setRoot(TabsPage, {
 			// Passage des paramètres dans la route
-			user: this.user,
-			id: this.id
+			index: 0,
+			id: this.id,
+			user: this.user
 		});
 	}
 }
