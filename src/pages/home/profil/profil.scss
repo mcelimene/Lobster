@@ -1,20 +1,37 @@
 page-profil {
-	#imgAvatar {
- 		height: 10em;
-		width: 10em;
-		margin: auto;
+
+	margin-top: 2em;
+
+	#imgProfil {
+	 	overflow:hidden;
+	    -webkit-border-radius:50%;
+	 	-moz-border-radius:50%;
+	    border-radius:50%;
+	    width:7em;
+	    height:7em;
+	    border: 2px solid #de4f31;
 	}
 
-	h1 {
-		margin-top: 4em !important;
+	#profil {
+		padding-top: 15%;
+		padding-left: 10%;
 	}
 
-	ion-avatar {
+	.imgSexe {
+		width:3em;
+	    height:3em;
+	}
+	.interest {
+		color: #de4f31;
+		padding-top: 1.5em;
+	}
 
-		.sexe {
-			height: 2em;
-			margin: 1em auto;
-		}
+	h1, h2 {
+		color: #de4f31;
+	}
+
+	.orange {
+		color: #de4f31;
 	}
 
 }

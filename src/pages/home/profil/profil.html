@@ -1,22 +1,75 @@
 <ion-content padding>
 	<ion-grid>
-		<ion-row justify-content-center align-items-center>
-			<ion-col>
-				<ion-item no-lines>
+		<ion-item>
+			<ion-row justify-content-center align-items-center>
+				<ion-col id="profil" ion-text color='orange'>
+					<h1>{{user.pseudo}}</h1>
+					<p class="orange">{{userAge}} ans</p>
+				</ion-col>
+				<ion-col>
 					<ion-avatar>
-						<img id="imgAvatar" *ngIf="user.photo" [src]="user.photo">
+						<img id='imgProfil' *ngIf="user.photo" [src]="user.photo" alt='photo de profils'>
 					</ion-avatar>
-					<h1 id="pseudo" ion-text text-center color="orange">{{ user.pseudo }}</h1>
-					<p id="birthday" ion-text text-center color="orange">{{ user.birthday }}</p>
-					<ion-avatar>
-						<img class="sexe" *ngIf="user.sexe == 'homme'" src="assets/imgs/homme.png">
-						<img class="sexe" *ngIf="user.sexe == 'femme'" src="assets/imgs/femme.png">
-					</ion-avatar>
-					<hr>
-					<p id="choix" ion-text text-center *ngIf="user.sexe == 'femme'" color="orange">Intéressée par les {{ user.choix + 's'}}</p>
-					<p id="choix" ion-text text-center *ngIf="user.sexe == 'homme'" color="orange">Intéressé par les {{ user.choix + 's'}}</p>
-				</ion-item>
-			</ion-col>
-		</ion-row>
+				</ion-col>
+			</ion-row>
+		</ion-item>
+
+		<ion-item>
+			<ion-row>
+				<ion-col>
+					<div class="interest" *ngIf="isMan; else autre1">Je suis un</div>
+					<ng-template #autre1>
+						<div class="interest">Je suis une</div>
+					</ng-template>
+				</ion-col>
+				<ion-col>
+					<img class="imgSexe" *ngIf="isMan; else autreImage1" src='assets/imgs/homme.png'>
+					<ng-template #autreImage1>
+						<img class="imgSexe" src='assets/imgs/femme.png'>
+					</ng-template>
+				</ion-col>
+				<ion-col>
+					<div class="interest" *ngIf="isMan; else autre2">intéressé par</div>
+					<ng-template #autre2>
+						<div class="interest">intéressée par</div>
+					</ng-template>
+				</ion-col>
+				<ion-col>
+					<img class="imgSexe" *ngIf="wantMan; else autreImage2" src='assets/imgs/homme.png'>
+					<ng-template #autreImage2>
+						<img class="imgSexe" src='assets/imgs/femme.png'>
+					</ng-template>
+				</ion-col>
+			</ion-row>
+		</ion-item>
+
+		<ion-item class="">
+			<ion-label color="orange" class="" floating>
+				<h2>... MA DESCRIPTION ...</h2>
+			</ion-label>
+			<ion-textarea [ngModel]="" placeholder="" name="description" clearIntput #champDescription></ion-textarea>
+		</ion-item>
+
+		<ion-item class="">
+			<ion-label color="orange" class="" floating>
+				<h2>... MA PHILOSOHIE ...</h2>
+			</ion-label>
+			<ion-textarea [ngModel]="" placeholder="" name="philo" clearIntput #champPhilo></ion-textarea>
+		</ion-item>
+
+		<ion-list>
+			<ion-list-header>
+				<h2>Ce que j'aime : </h2>
+			</ion-list-header>
+		</ion-list>
+
+		<ion-list>
+			<ion-list-header>
+				<h2>Ce que je n'aime pas : </h2>
+			</ion-list-header>
+		</ion-list>
+
+		<!-- Bouton de mis à jour du profil -->
+		<button id="button" ion-button color="orange" round outline (click)="updateProfil(champDescription.value)">Mise à jour</button>
 	</ion-grid>
 </ion-content>
