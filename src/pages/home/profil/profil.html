@@ -51,20 +51,34 @@
 			</ion-row>
 		</ion-item>
 
-	  	<ion-item class="">
-	  	  	<ion-label color="orange" class="" floating>
-	  	  		<h2>... MA DESCRIPTION ...</h2>
-	  	  	</ion-label>
-	  	  	<ion-textarea [ngModel]="" placeholder="" name="description" clearIntput #champDescription></ion-textarea>
-	  	</ion-item> 
 
-	  	<ion-item class=""> 
-	  	  	<ion-label color="orange" class="" floating>
-	  	  		<h2>... MA PHILOSOHIE ...</h2>
-	  	  	</ion-label>
-	  	  	<ion-textarea [ngModel]="" placeholder="" name="philo" clearIntput #champPhilo></ion-textarea>
-	  	</ion-item> 
+    <form (ngSubmit)="logForm()">
+      <ion-item>
+        <ion-label>Todo</ion-label>
+        <ion-input type="text" [ngModel]="todo.title" name="title"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Description</ion-label>
+        <ion-textarea [ngModel]="todo.description" name="description"></ion-textarea>
+      </ion-item>
+      <button ion-button type="submit" block>Add Todo</button>
+    </form>
 
+
+<!-- 	  	<ion-item class="">
+  	<ion-label color="orange" class="" floating>
+  		<h2>... MA DESCRIPTION ...</h2>
+  	</ion-label>
+  	<ion-textarea [ngModel]="" placeholder="" name="description" clearIntput #champDescription></ion-textarea>
+</ion-item> 
+
+<ion-item class=""> 
+  	<ion-label color="orange" class="" floating>
+  		<h2>... MA PHILOSOHIE ...</h2>
+  	</ion-label>
+  	<ion-textarea [ngModel]="" placeholder="" name="philo" clearIntput #champPhilo></ion-textarea>
+</ion-item> 
+ -->
 		<ion-list>
 			<ion-list-header>
 				<h2>Ce que j'aime : </h2>
