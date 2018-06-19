@@ -3,15 +3,12 @@ import { NavController, NavParams, Nav } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
 import { User } from '../../models/User.model';
 import { DisconnectionPage } from '../disconnection/disconnection';
-import { ProfilPage } from '../home/profil/profil';
-import { HomePage } from '../home/home';
 import { SettingsPage } from '../settings/settings';
 
 
 export interface PageInterface {
 	title: string,
 	pageName: any,
-	tabComponent?: any,
 	index?: number,
 	icon: string
 }
@@ -20,13 +17,14 @@ export interface PageInterface {
 	selector: "page-menu",
 	templateUrl: "menu.html"
 })
+
 export class MenuPage implements OnInit {
 	rootPage: any = TabsPage;
 	// Utilisateur
 	user: User;
 	// id de l'utilisateur passé dans la route
 	public userId: "string";
-	// Index de la page demandée
+	// Index de la page demandée (menu des tabs)
 	public index: number;
 	// Paramètres à faire passer dans la route
 	public params;
@@ -39,14 +37,12 @@ export class MenuPage implements OnInit {
 		{
 			title: "Accueil",
 			pageName: TabsPage,
-			tabComponent: HomePage,
 			index: 0,
 			icon: "home"
 		},
 		{
 			title: "Profil",
-			pageName: "TabsPage",
-			tabComponent: ProfilPage,
+			pageName: TabsPage,
 			index: 1,
 			icon: "contact"
 		},
@@ -70,7 +66,7 @@ export class MenuPage implements OnInit {
 		// Récupération de l'id de l'utilisateur
 		this.index = this.navParams.get("index") || 0;
 		// Passage des paramètres dans la route
-		this.params = { user: this.user, id: this.userId };
+		this.params = { user: this.user, id: this.userId, index: this.index };
 	}
 
 	openPage(page: PageInterface) {
@@ -82,7 +78,7 @@ export class MenuPage implements OnInit {
 		if (this.nav.getActiveChildNavs() && page.index != undefined) {
 			this.nav.getActiveChildNavs()[0].select(page.index);
 		} else {
-			this.nav.setRoot(page.pageName);
+			this.nav.setRoot(page.pageName, this.params);
 		}
 	}
 }

@@ -4,7 +4,7 @@ import { ConversationsPage } from '../home/conversations/conversations';
 import { DemandesPage } from '../home/demandes/demandes';
 import { RadarPage } from '../radar/radar';
 import { User } from '../../models/User.model';
-import { TabsPage } from '../tabs/tabs';
+import { MenuPage } from '../menu/menu';
 
 @Component({
 	selector: "page-home",
@@ -15,6 +15,8 @@ export class HomePage implements OnInit {
 	user: User;
 	// Id de l'utilisateur passé dans la route
 	public userId: string;
+	// Paramètres de la route
+	public params: any;
 
 	constructor(
 		public navCtrl: NavController,
@@ -29,13 +31,10 @@ export class HomePage implements OnInit {
 	}
 
 	goToProfil() {
+		// Passage des paramètres dans la route
+		this.params = { id: this.userId, user: this.user };
 		// Redirection vers la page Profil
-		this.navCtrl.push(TabsPage, {
-			// Passage des paramètres dans la route
-			index: 1,
-			id: this.userId,
-			user: this.user
-		});
+		this.navCtrl.parent.select(1, this.params);
 	}
 
 	goToRadar() {
