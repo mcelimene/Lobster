@@ -5,10 +5,19 @@ page-profil {
 	    -webkit-border-radius:50%;
 	 	-moz-border-radius:50%; 
 	    border-radius:50%; 
-	    width:7em;
-	    height:7em;
-	    border: 2px solid #de4f31;
-	}
+
+	margin-top: 2em;
+
+// 	#imgProfil {
+// 	 	overflow:hidden;
+// 	    -webkit-border-radius:50%;
+// 	 	-moz-border-radius:50%;
+// 	    border-radius:50%;
+
+// 	    width:7em;
+// 	    height:7em;
+// 	    border: 2px solid #de4f31;
+// 	}
 
 	#profil {
 		padding-top: 15%;		
@@ -32,3 +41,4 @@ page-profil {
 		color: #de4f31;
 	}
 }
+

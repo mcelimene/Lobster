@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { MessagesPage } from '../messages/messages';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
-@IonicPage()
 @Component({
 	selector: 'page-conversations',
 	templateUrl: 'conversations.html',

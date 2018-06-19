@@ -5,11 +5,9 @@
 </ion-header>
 
 <ion-content padding>
-
-
-	<ion-grid ion-text color='orange'>
+	<ion-grid>
 		<ion-item>
-			<ion-row>
+			<ion-row justify-content-center align-items-center>
 				<ion-col id="profil" ion-text color='orange'>
 					<h1>{{user.pseudo}}</h1>
 					<p class="orange">{{userAge}} ans</p>
@@ -18,6 +16,35 @@
 					<ion-avatar>
 						<img id='imgProfil' *ngIf="user.photo" [src]="user.photo" alt='photo de profils'>
 					</ion-avatar>
+				</ion-col>
+			</ion-row>
+		</ion-item>
+
+		<ion-item>
+			<ion-row>
+				<ion-col>
+					<div class="interest" *ngIf="isMan; else autre1">Je suis un</div>
+					<ng-template #autre1>
+						<div class="interest">Je suis une</div>
+					</ng-template>
+				</ion-col>
+				<ion-col>
+					<img class="imgSexe" *ngIf="isMan; else autreImage1" src='assets/imgs/homme.png'>
+					<ng-template #autreImage1>
+						<img class="imgSexe" src='assets/imgs/femme.png'>
+					</ng-template>
+				</ion-col>
+				<ion-col>
+					<div class="interest" *ngIf="isMan; else autre2">intéressé par</div>
+					<ng-template #autre2>
+						<div class="interest">intéressée par</div>
+					</ng-template>
+				</ion-col>
+				<ion-col>
+					<img class="imgSexe" *ngIf="wantMan; else autreImage2" src='assets/imgs/homme.png'>
+					<ng-template #autreImage2>
+						<img class="imgSexe" src='assets/imgs/femme.png'>
+					</ng-template>
 				</ion-col>
 			</ion-row>
 		</ion-item>
@@ -64,21 +91,6 @@
       <button ion-button type="submit" block>Add Todo</button>
     </form>
 
-
-<!-- 	  	<ion-item class="">
-  	<ion-label color="orange" class="" floating>
-  		<h2>... MA DESCRIPTION ...</h2>
-  	</ion-label>
-  	<ion-textarea [ngModel]="" placeholder="" name="description" clearIntput #champDescription></ion-textarea>
-</ion-item> 
-
-<ion-item class=""> 
-  	<ion-label color="orange" class="" floating>
-  		<h2>... MA PHILOSOHIE ...</h2>
-  	</ion-label>
-  	<ion-textarea [ngModel]="" placeholder="" name="philo" clearIntput #champPhilo></ion-textarea>
-</ion-item> 
- -->
 		<ion-list>
 			<ion-list-header>
 				<h2>Ce que j'aime : </h2>
@@ -95,15 +107,3 @@
 		<button type="submit" id="button" ion-button color="orange" round outline (click)=updateProfil(champDescription.value)>Mise à jour</button>
 
 	</ion-grid>
-<!-- 		<hr>
-<div ion-text color='orange'>
-	<h2>{{item.description}}</h2>
-	<img id='modif' src='../assets/imgs/modif.png' alt='modif'>
-	<h2>Je recherche{{item.orientation}}</h2>
-	<h2>{{item.aime}}</h2>
-	<h2>{{item.aimepas}}</h2>
-</div> -->
-
-
-
-</ion-content>

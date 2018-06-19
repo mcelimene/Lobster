@@ -1,13 +1,14 @@
 import { Component, OnInit } from "@angular/core";
-import { IonicPage, NavController, NavParams } from "ionic-angular";
+import { NavController, NavParams } from "ionic-angular";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { AuthService } from "../../services/auth.service";
 import { InfosPage } from "./infos/infos";
 import { UserService } from "../../services/user.service";
 import { User } from "../../models/User.model";
+import * as moment from 'moment';
 // import { matchOtherValidator } from "@moebius/ng-validators";
 
-@IonicPage()
+
 @Component({
 	selector: "page-signup",
 	templateUrl: "signup.html"
@@ -24,17 +25,22 @@ export class SignupPage implements OnInit {
 	// Utilisateur
 	private user: User;
 
+	// Date maxi = 18 ans et +
+	public dateMin: string;
+
 	constructor(
 		public navCtrl: NavController,
 		public navParams: NavParams,
 		private authService: AuthService,
 		private formBuilder: FormBuilder,
-		private userService: UserService
+		private userService: UserService,
 	) {}
 
 	ngOnInit() {
 		// Initialisation du formulaire
 		this.initForm();
+		// Initialisation de la date de naissance (18ans et +)
+ 		this.dateMin = moment().subtract(18, 'year').format('YYYY-MM-DD');
 	}
 
 	// Initialisation du formulaire
@@ -57,7 +63,7 @@ export class SignupPage implements OnInit {
 			// 	[Validators.required, matchOtherValidator("password")]
 			// ],
 			// Date de naissance requise
-			birthday: [
+			birthDate: [
 				null,
 				[
 					Validators.required
@@ -120,7 +126,11 @@ export class SignupPage implements OnInit {
 	// Enregistrement de l'utilisateur et de ses informations
 	onSaveUser() {
 		// Récupération des données du formulaire
-		const birthday = this.registerForm.get("birthday").value;
+		const birthDate = this.registerForm.get("birthDate").value;
+		const birthYear = birthDate.substr(0,4);
+		const birthMonth = birthDate.substr(5, 2);
+    const birthDay = birthDate.substr(8, 2);
+
 		const email = this.registerForm.get("email").value;
 		const password = this.registerForm.get("password").value;
 		const pseudo = this.registerForm.get("pseudo").value;
@@ -133,11 +143,12 @@ export class SignupPage implements OnInit {
 			photo = this.fileUrl;
 		}
 		// Assignation des données recueillies à l'objet l'utilisateur
-		this.user = new User(pseudo, birthday, choix, sexe, photo);
+		this.user = new User(pseudo, birthDay, birthMonth, birthYear, choix, sexe, photo);
 
 		// Enregistrement de l'utilisateur après l'enregistrement de l'authentification
 		this.authService.signUpUser(email, password).then(
 			() => {
+				console.log(birthDate);
 				// Enregistement des données de l'utilisateur par le noeud de son ID
 				this.userService.createUser(this.user);
 				let id = this.authService.currentId();
@@ -151,19 +162,10 @@ export class SignupPage implements OnInit {
 			(error) => {
 				// Affichage des erreurs
 				console.log(error);
-
-				// switch(error["code"]){
-				// 	case "auth/invalid-email":
-				// 		this.userService.presentToast("Adresse email incorrecte");
-				// 	break;
-				// 	case "auth/email-already-in-use":
-				// 		this.userService.presentToast("Adresse email déjà utilisée");
-				// 	break;
-				// }
-				console.log(error["code"]);
-				console.log(this.registerForm);
+				// Affichage des erreurs concernant l'email
+				if(error["code"] === "auth/invalid-email"){	this.userService.presentToast("Adresse email incorrecte");	}
+				else if(error["code"] === "auth/email-already-in-use"){	this.userService.presentToast("Adresse email déjà utilisée"); }
 			}
 		);
 	}
 }
-

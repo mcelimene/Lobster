@@ -1,6 +1,11 @@
-<ion-tabs>
-	<ion-tab [root]="home" tabTitle="Home" tabIcon="home"></ion-tab>
-	<ion-tab [root]="profile" tabTitle="Profil" tabIcon="information-circle"></ion-tab>
-	<ion-tab [root]="welcome" tabTitle="Welcome" tabIcon="md-lock"></ion-tab>
-
+<ion-header>
+	<ion-navbar>
+		<button ion-button menuToggle color="orange">
+			<ion-icon name="menu"></ion-icon>
+		</button>
+	</ion-navbar>
+</ion-header>
+<ion-tabs color="orange" [selectedIndex]="index">
+	<ion-tab [root]="home" tabTitle="Home" tabIcon="home" [rootParams]="params"></ion-tab>
+	<ion-tab [root]="profile" tabTitle="Profil" tabIcon="contact" [rootParams]="params"></ion-tab>
 </ion-tabs>
