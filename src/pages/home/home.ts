@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { ConversationsPage } from '../home/conversations/conversations';
 import { DemandesPage } from '../home/demandes/demandes';
-import { RadarPage } from '../radar/radar';
 import { User } from '../../models/User.model';
 
 
@@ -37,9 +36,9 @@ export class HomePage implements OnInit {
 		this.navCtrl.parent.select(1, this.params);
 	}
 
-	goToRadar() {
-		this.navCtrl.push(RadarPage);
-	}
+	// goToRadar() {
+
+	// }
 
 	goToDemandes() {
 		this.navCtrl.push(DemandesPage);

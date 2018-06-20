@@ -4,6 +4,7 @@ import { TabsPage } from '../tabs/tabs';
 import { User } from '../../models/User.model';
 import { DisconnectionPage } from '../disconnection/disconnection';
 import { SettingsPage } from '../settings/settings';
+import { RadarPage } from '../radar/radar';
 
 
 export interface PageInterface {
@@ -28,10 +29,12 @@ export class MenuPage implements OnInit {
 	public index: number;
 	// Paramètres à faire passer dans la route
 	public params;
+	@ViewChild(Nav) nav: Nav;
+	page: string;
+	radar: boolean = false;
 
 	constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
-	@ViewChild(Nav) nav: Nav;
 
 	pages: PageInterface[] = [
 		{
@@ -55,6 +58,11 @@ export class MenuPage implements OnInit {
 			title: "Déconnexion",
 			pageName: DisconnectionPage,
 			icon: "link"
+		},
+		{
+			title: "Radar",
+			pageName: RadarPage,
+			icon: "ionic"
 		}
 	];
 
@@ -65,8 +73,11 @@ export class MenuPage implements OnInit {
 		this.userId = this.navParams.get("id");
 		// Récupération de l'id de l'utilisateur
 		this.index = this.navParams.get("index") || 0;
+		// Récupération du nom de la page
+		this.page = this.navParams.get("pageName");
 		// Passage des paramètres dans la route
 		this.params = { user: this.user, id: this.userId, index: this.index };
+
 	}
 
 	openPage(page: PageInterface) {
@@ -75,7 +86,7 @@ export class MenuPage implements OnInit {
 			this.params.index = page.index;
 		}
 
-		if (this.nav.getActiveChildNavs() && page.index != undefined) {
+		if (this.nav.getActiveChildNavs()[0] && page.index != undefined) {
 			this.nav.getActiveChildNavs()[0].select(page.index);
 		} else {
 			this.nav.setRoot(page.pageName, this.params);
