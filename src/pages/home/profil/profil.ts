@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams } from "ionic-angular";
 import { User } from '../../../models/User.model';
 import { UserService } from "../../../services/user.service";
-// import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { MenuPage } from '../../menu/menu';
 
 
 @Component({
@@ -44,12 +44,16 @@ export class ProfilPage {
 		this.wantMan = this.user.choix === "homme";
 	}
 
-	logForm(form) {
-    	// console.log(this.todo)
-  	}
-
-
-	updateProfil(value: string) {
-		console.log(value);
+	updateProfil() {
+		// mise à jour du profil dans la bdd
+		this.userService.updateUser(this.userId, this.user);
+		this.userService.presentToast("Votre profil a bien été mis à jour");
+		// rafraichissement de la page avec le profil à jour
+		this.navCtrl.setRoot(MenuPage, {
+			// Passage des paramètres dans la route
+			index: 1,
+			id: this.userId,
+			user: this.user
+		});
 	}
 }
