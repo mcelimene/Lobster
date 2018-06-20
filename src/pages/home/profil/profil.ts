@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { User } from '../../../models/User.model';
 import { UserService } from '../../../services/user.service';
-import { TabsPage } from '../../tabs/tabs';
 
 
 @Component({
@@ -54,14 +53,12 @@ export class ProfilPage {
 	updateProfil() {
 		// mise à jour du profil dans la bdd
 		this.userService.updateUser(this.userId, this.user);
+		// Passage des paramètres dans la route
+		this.params = { user: this.user, id: this.userId };
 		this.userService.presentToast("Votre profil a bien été mis à jour");
 		// rafraichissement de la page avec le profil à jour
-		this.navCtrl.setRoot(TabsPage, {
-			// Passage des paramètres dans la route
-			index: 1,
-			id: this.userId,
-			user: this.user
-		});
+		// Redirection vers la page Profil
+		this.navCtrl.parent.select(1, this.params);
 	}
 
 }
