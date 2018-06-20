@@ -19,36 +19,7 @@
 				</ion-col>
 			</ion-row>
 		</ion-item>
-
-		<ion-item>
-			<ion-row>
-				<ion-col>
-					<div class="interest" *ngIf="isMan; else autre1">Je suis un</div>
-					<ng-template #autre1>
-						<div class="interest">Je suis une</div>
-					</ng-template>
-				</ion-col>
-				<ion-col>
-					<img class="imgSexe" *ngIf="isMan; else autreImage1" src='assets/imgs/homme.png'>
-					<ng-template #autreImage1>
-						<img class="imgSexe" src='assets/imgs/femme.png'>
-					</ng-template>
-				</ion-col>
-				<ion-col>
-					<div class="interest" *ngIf="isMan; else autre2">intéressé par</div>
-					<ng-template #autre2>
-						<div class="interest">intéressée par</div>
-					</ng-template>
-				</ion-col>
-				<ion-col>
-					<img class="imgSexe" *ngIf="wantMan; else autreImage2" src='assets/imgs/homme.png'>
-					<ng-template #autreImage2>
-						<img class="imgSexe" src='assets/imgs/femme.png'>
-					</ng-template>
-				</ion-col>
-			</ion-row>
-		</ion-item>
-
+    
 		<ion-item>
 			<ion-row>
 				<ion-col>
@@ -77,7 +48,6 @@
 				</ion-col>
 			</ion-row>
 		</ion-item>
-
 
     <form (ngSubmit)="logForm()">
       <ion-item>

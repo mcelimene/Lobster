@@ -34,13 +34,13 @@ export class SignupPage implements OnInit {
 		private authService: AuthService,
 		private formBuilder: FormBuilder,
 		private userService: UserService,
-	) {}
+	) { }
 
 	ngOnInit() {
 		// Initialisation du formulaire
 		this.initForm();
 		// Initialisation de la date de naissance (18ans et +)
- 		this.dateMin = moment().subtract(18, 'year').format('YYYY-MM-DD');
+		this.dateMin = moment().subtract(18, 'year').format('YYYY-MM-DD');
 	}
 
 	// Initialisation du formulaire
@@ -87,14 +87,14 @@ export class SignupPage implements OnInit {
 		// Téléchargemet de l'image
 		this.userService.uploadFile(file).then(
 			(url: string) => {
-			// Récupération de l'url de l'image après téléchargement
-			this.fileUrl = url;
-			// Téléchargement termné
-			this.fileIsUploading = false;
-			// Photo téléchargée
-			this.fileUploaded = true;
-			// Popup indiquant que la photo a été chargée
-			this.userService.presentToast("Photo chargée");
+				// Récupération de l'url de l'image après téléchargement
+				this.fileUrl = url;
+				// Téléchargement termné
+				this.fileIsUploading = false;
+				// Photo téléchargée
+				this.fileUploaded = true;
+				// Popup indiquant que la photo a été chargée
+				this.userService.presentToast("Photo chargée");
 			}
 		);
 	}
@@ -127,9 +127,9 @@ export class SignupPage implements OnInit {
 	onSaveUser() {
 		// Récupération des données du formulaire
 		const birthDate = this.registerForm.get("birthDate").value;
-		const birthYear = birthDate.substr(0,4);
+		const birthYear = birthDate.substr(0, 4);
 		const birthMonth = birthDate.substr(5, 2);
-    const birthDay = birthDate.substr(8, 2);
+		const birthDay = birthDate.substr(8, 2);
 
 		const email = this.registerForm.get("email").value;
 		const password = this.registerForm.get("password").value;
@@ -163,8 +163,8 @@ export class SignupPage implements OnInit {
 				// Affichage des erreurs
 				console.log(error);
 				// Affichage des erreurs concernant l'email
-				if(error["code"] === "auth/invalid-email"){	this.userService.presentToast("Adresse email incorrecte");	}
-				else if(error["code"] === "auth/email-already-in-use"){	this.userService.presentToast("Adresse email déjà utilisée"); }
+				if (error["code"] === "auth/invalid-email") { this.userService.presentToast("Adresse email incorrecte"); }
+				else if (error["code"] === "auth/email-already-in-use") { this.userService.presentToast("Adresse email déjà utilisée"); }
 			}
 		);
 	}

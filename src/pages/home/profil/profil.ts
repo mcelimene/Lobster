@@ -10,6 +10,7 @@ import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 	templateUrl: "profil.html"
 })
 export class ProfilPage {
+	index: number;
 	user: User;
 	public userId: string;
 	public params;
@@ -31,11 +32,11 @@ export class ProfilPage {
 		this.user = this.navParams.get("user");
 		// Récupération de l'Id de l'utilisateur
 		this.userId = this.navParams.get("id");
-
-		// Calcul de l'age
-		this.userAge = this.userService.getAge(this.user.birthday);	
-    // Passage des paramètres dans la route
+		// Récupération de l'Id de l'utilisateur
+		this.index = this.navParams.get("index");
+		// Passage des paramètres dans la route
 		this.params = { user: this.user, id: this.userId };
+    
 		// Calcul de l'age
 		this.userAge = this.userService.getAge(this.user.birthDay, this.user.birthMonth, this.user.birthYear);
 		// Variables pour l'affichage du genre et du choix

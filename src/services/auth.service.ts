@@ -43,6 +43,14 @@ export class AuthService {
 		});
 	}
 
+	signOutUser() {
+		firebase.auth().signOut().then(function () {
+			console.log('Déconnecté');
+		}, function (error) {
+			console.error('Erreur lors de la déconnexion', error);
+		});
+	}
+
 
 
 }
