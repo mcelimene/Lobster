@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams } from "ionic-angular";
 import { User } from '../../../models/User.model';
 import { UserService } from "../../../services/user.service";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+// import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 
 
 @Component({
@@ -36,7 +36,7 @@ export class ProfilPage {
 		this.index = this.navParams.get("index");
 		// Passage des paramètres dans la route
 		this.params = { user: this.user, id: this.userId };
-    
+
 		// Calcul de l'age
 		this.userAge = this.userService.getAge(this.user.birthDay, this.user.birthMonth, this.user.birthYear);
 		// Variables pour l'affichage du genre et du choix
@@ -45,7 +45,7 @@ export class ProfilPage {
 	}
 
 	logForm(form) {
-    	console.log(this.todo)
+    	// console.log(this.todo)
   	}
 
 

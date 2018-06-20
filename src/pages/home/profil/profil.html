@@ -1,9 +1,3 @@
-<ion-header>
-	<ion-navbar color="orange">
-		<ion-title>Profil</ion-title>
-	</ion-navbar>
-</ion-header>
-
 <ion-content padding>
 	<ion-grid>
 		<ion-item>
@@ -19,14 +13,14 @@
 				</ion-col>
 			</ion-row>
 		</ion-item>
-    
+
 		<ion-item>
 			<ion-row>
 				<ion-col>
  					<div class="interest" *ngIf="isMan; else autre1">Je suis un</div>
 					<ng-template #autre1>
 						<div class="interest" >Je suis une</div>
-					</ng-template>	 		
+					</ng-template>
 				</ion-col>
 				<ion-col>
 					<img class="imgSexe" *ngIf="isMan; else autreImage1" src='assets/imgs/homme.png' >
@@ -44,12 +38,12 @@
 					<img class="imgSexe" *ngIf="wantMan; else autreImage2" src='assets/imgs/homme.png' >
 					<ng-template #autreImage2>
 						<img class="imgSexe" src='assets/imgs/femme.png'>
-					</ng-template>					
+					</ng-template>
 				</ion-col>
 			</ion-row>
 		</ion-item>
 
-    <form (ngSubmit)="logForm()">
+    <!-- <form (ngSubmit)="logForm()">
       <ion-item>
         <ion-label>Todo</ion-label>
         <ion-input type="text" [ngModel]="todo.title" name="title"></ion-input>
@@ -59,7 +53,7 @@
         <ion-textarea [ngModel]="todo.description" name="description"></ion-textarea>
       </ion-item>
       <button ion-button type="submit" block>Add Todo</button>
-    </form>
+    </form> -->
 
 		<ion-list>
 			<ion-list-header>

@@ -28,6 +28,7 @@ export class HomePage implements OnInit {
 		this.user = this.navParams.get("user");
 		// Récupération de l'Id de l'utilisateur
 		this.userId = this.navParams.get("id");
+	}
 
 	goToProfil() {
 		// Passage des paramètres dans la route
