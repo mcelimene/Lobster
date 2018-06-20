@@ -5,9 +5,8 @@ import { AuthService } from "../../services/auth.service";
 import { InfosPage } from "./infos/infos";
 import { UserService } from "../../services/user.service";
 import { User } from "../../models/User.model";
-import * as moment from 'moment';
+import * as moment from "moment";
 // import { matchOtherValidator } from "@moebius/ng-validators";
-
 
 @Component({
 	selector: "page-signup",
@@ -33,14 +32,16 @@ export class SignupPage implements OnInit {
 		public navParams: NavParams,
 		private authService: AuthService,
 		private formBuilder: FormBuilder,
-		private userService: UserService,
-	) { }
+		private userService: UserService
+	) {}
 
 	ngOnInit() {
 		// Initialisation du formulaire
 		this.initForm();
 		// Initialisation de la date de naissance (18ans et +)
-		this.dateMin = moment().subtract(18, 'year').format('YYYY-MM-DD');
+		this.dateMin = moment()
+			.subtract(18, "year")
+			.format("YYYY-MM-DD");
 	}
 
 	// Initialisation du formulaire
@@ -55,7 +56,9 @@ export class SignupPage implements OnInit {
 					Validators.required,
 					// Validators.pattern(/[0-9a-zA-Z]{6,}/),
 					Validators.minLength(6),
-					Validators.pattern(/[0-9a-zA-Z-+=_.,:;~`!@#$%^&*(){}<>\[\]"'\/\\]{6,}/)
+					Validators.pattern(
+						/[0-9a-zA-Z-+=_.,:;~`!@#$%^&*(){}<>\[\]"'\/\\]{6,}/
+					)
 				]
 			],
 			// confirmPassword: [
@@ -63,18 +66,15 @@ export class SignupPage implements OnInit {
 			// 	[Validators.required, matchOtherValidator("password")]
 			// ],
 			// Date de naissance requise
-			birthDate: [
-				null,
-				[
-					Validators.required
-				]
-			],
+			birthDate: [null, [Validators.required]],
 			// Pseudo requis
 			pseudo: [
 				"",
 				[
 					Validators.required,
-					Validators.pattern(/[0-9a-zA-Z-+=_.,:;~`!@#$%^&*(){}<>\[\]"'\/\\]{6,}/)
+					Validators.pattern(
+						/[0-9a-zA-Z-+=_.,:;~`!@#$%^&*(){}<>\[\]"'\/\\]{6,}/
+					)
 				]
 			]
 		});
@@ -85,18 +85,16 @@ export class SignupPage implements OnInit {
 		// Fichier en cours de téléchargement
 		this.fileIsUploading = true;
 		// Téléchargemet de l'image
-		this.userService.uploadFile(file).then(
-			(url: string) => {
-				// Récupération de l'url de l'image après téléchargement
-				this.fileUrl = url;
-				// Téléchargement termné
-				this.fileIsUploading = false;
-				// Photo téléchargée
-				this.fileUploaded = true;
-				// Popup indiquant que la photo a été chargée
-				this.userService.presentToast("Photo chargée");
-			}
-		);
+		this.userService.uploadFile(file).then((url: string) => {
+			// Récupération de l'url de l'image après téléchargement
+			this.fileUrl = url;
+			// Téléchargement termné
+			this.fileIsUploading = false;
+			// Photo téléchargée
+			this.fileUploaded = true;
+			// Popup indiquant que la photo a été chargée
+			this.userService.presentToast("Photo chargée");
+		});
 	}
 
 	// Fonction lancée lors d'un changement d'état dans la vue
@@ -137,18 +135,33 @@ export class SignupPage implements OnInit {
 		// Initialisation des données non encore fournies
 		const choix = "";
 		const sexe = "";
+		const description = "";
+		const philosophie = "";
+		const like = "";
+		const notlike = "";
 		let photo = "";
 		// Récupération de l'url de la photo
 		if (this.fileUrl && this.fileUrl !== "") {
 			photo = this.fileUrl;
 		}
 		// Assignation des données recueillies à l'objet l'utilisateur
-		this.user = new User(pseudo, birthDay, birthMonth, birthYear, choix, sexe, photo);
+		this.user = new User(
+			pseudo,
+			birthDay,
+			birthMonth,
+			birthYear,
+			choix,
+			sexe,
+			description,
+			philosophie,
+			like,
+			notlike,
+			photo
+		);
 
 		// Enregistrement de l'utilisateur après l'enregistrement de l'authentification
 		this.authService.signUpUser(email, password).then(
 			() => {
-				console.log(birthDate);
 				// Enregistement des données de l'utilisateur par le noeud de son ID
 				this.userService.createUser(this.user);
 				let id = this.authService.currentId();
@@ -159,12 +172,17 @@ export class SignupPage implements OnInit {
 					id: id
 				});
 			},
-			(error) => {
+			error => {
 				// Affichage des erreurs
 				console.log(error);
 				// Affichage des erreurs concernant l'email
-				if (error["code"] === "auth/invalid-email") { this.userService.presentToast("Adresse email incorrecte"); }
-				else if (error["code"] === "auth/email-already-in-use") { this.userService.presentToast("Adresse email déjà utilisée"); }
+				if (error["code"] === "auth/invalid-email") {
+					this.userService.presentToast("Adresse email incorrecte");
+				} else if (error["code"] === "auth/email-already-in-use") {
+					this.userService.presentToast(
+						"Adresse email déjà utilisée"
+					);
+				}
 			}
 		);
 	}
