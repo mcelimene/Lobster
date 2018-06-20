@@ -7,7 +7,7 @@ import { ToastController } from "ionic-angular";
 @Injectable()
 export class UserService {
 
-	constructor(public toastCtrl: ToastController) {}
+	constructor(public toastCtrl: ToastController) { }
 
 	// Enregistement d'un utilisateur dans la base de données
 	createUser(user: User) {
@@ -95,5 +95,50 @@ export class UserService {
 			age = (nowyear - parseInt(birthYear)) - 1;
 		} else { age = nowyear - parseInt(birthYear); }
 		return age;
+	}
+
+	removeUser(id: string) {
+
+		// Récupération de l'utilisteur à partir de l'id
+		this.getUser(id).then(
+			(user: User) => {
+				let userToRemove = user;
+				if (userToRemove.photo) {
+					// Suppression de la photo de l'utilisateur
+					const storageRef = firebase.storage().refFromURL(userToRemove.photo);
+					storageRef.delete().then(
+						() => {
+							console.log('Photo supprimée');
+
+						}
+					).catch(
+						(error) => {
+							console.log('Photo non trouvée' + error);
+						}
+					);
+				}
+				// Suppression du profil de l'utilisateur
+				const profileRef = firebase.database().ref('/user-list/' + id);
+				profileRef.remove().then(
+					() => {
+						console.log('Profil supprimé');
+
+					}
+				).catch(
+					(error) => {
+						console.log('Profil non trouvé' + error);
+					}
+				);
+				// Supression de l'utilisateur
+				const userRef = firebase.auth().currentUser;
+				userRef.delete().then(
+					() => {
+						console.log("Utilisateur supprimé");
+					})
+					.catch(error => {
+						console.log("Utilisateur non trouvé" + error);
+					});
+			}
+		);
 	}
 }

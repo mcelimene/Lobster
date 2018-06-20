@@ -4,7 +4,6 @@ import { ConversationsPage } from '../home/conversations/conversations';
 import { DemandesPage } from '../home/demandes/demandes';
 import { RadarPage } from '../radar/radar';
 import { User } from '../../models/User.model';
-import { MenuPage } from '../menu/menu';
 
 @Component({
 	selector: "page-home",
