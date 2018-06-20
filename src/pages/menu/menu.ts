@@ -18,7 +18,6 @@ export interface PageInterface {
 	selector: "page-menu",
 	templateUrl: "menu.html"
 })
-
 export class MenuPage implements OnInit {
 	rootPage: any = TabsPage;
 	// Utilisateur
@@ -34,7 +33,6 @@ export class MenuPage implements OnInit {
 	radar: boolean = false;
 
 	constructor(public navCtrl: NavController, public navParams: NavParams) {}
-
 
 	pages: PageInterface[] = [
 		{
@@ -76,8 +74,7 @@ export class MenuPage implements OnInit {
 		// Récupération du nom de la page
 		this.page = this.navParams.get("pageName");
 		// Passage des paramètres dans la route
-		this.params = { user: this.user, id: this.userId, index: this.index };
-
+		this.params = { user: this.user, id: this.userId };
 	}
 
 	openPage(page: PageInterface) {
@@ -87,9 +84,11 @@ export class MenuPage implements OnInit {
 		}
 
 		if (this.nav.getActiveChildNavs()[0] && page.index != undefined) {
-			this.nav.getActiveChildNavs()[0].select(page.index);
+			this.nav.getActiveChildNavs()[0].select(page.index, this.params);
+			console.log("ici, index :" + this.params.index);
 		} else {
 			this.nav.setRoot(page.pageName, this.params);
+			console.log("là, index :" + this.params.index);
 		}
 	}
 }

@@ -7,7 +7,7 @@
 					<p class="orange">{{userAge}} ans</p>
 				</ion-col>
 				<ion-col>
-					<ion-avatar>
+					<ion-avatar id="imgAvatar">
 						<img id='imgProfil' *ngIf="user.photo" [src]="user.photo" alt='photo de profils'>
 					</ion-avatar>
 				</ion-col>
@@ -42,9 +42,11 @@
 				</ion-col>
 			</ion-row>
 		</ion-item>
+		<hr>
 
 		<form (ngSubmit)="updateProfil()">
 			<ion-list>
+
 				<ion-item>
 					<ion-label color="orange" *ngIf="emptyDescription; else stacklabel1" floating>.... ici votre description ....</ion-label>
 					<ng-template #stacklabel1>
@@ -81,5 +83,6 @@
 				<button ion-button color="orange" round outline type="submit" block>Mise à Jour</button>
 			</ion-list>
 		</form>
+
 	</ion-grid>
 </ion-content>
