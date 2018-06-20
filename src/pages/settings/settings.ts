@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/User.model';
 import { WelcomePage } from '../welcome/welcome';
+import { TabsPage } from '../tabs/tabs';
 
 @Component({
 	selector: 'page-settings',
@@ -17,6 +18,7 @@ export class SettingsPage {
 
 	constructor(public navCtrl: NavController,
 				public navParams: NavParams,
+				public alertCtrl: AlertController,
 				public userService: UserService) {
 	}
 
@@ -31,9 +33,27 @@ export class SettingsPage {
 		this.params = { user: this.user, id: this.userId };
 	}
 
-	onRemove(id: string) {
-		this.userService.removeUser(id);
-		this.navCtrl.setRoot(WelcomePage);
+	onRemove() {
+		const prompt = this.alertCtrl.create({
+			title: "Suppression du compte",
+			message:
+				"Êtes-vous sûr de vouloir supprimer votre compte ?",
+			buttons: [
+				{
+					text: "Non",
+					handler: data => {
+						this.navCtrl.setRoot(TabsPage, this.params);
+					}
+				},
+				{
+					text: "Oui",
+					handler: data => {
+						this.userService.removeUser(this.userId);
+						this.navCtrl.setRoot(WelcomePage);
+					}
+				}
+			]
+		});
+		prompt.present();
 	}
-
 }
