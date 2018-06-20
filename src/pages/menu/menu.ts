@@ -28,8 +28,8 @@ export class MenuPage implements OnInit {
 	public index: number;
 	// Paramètres à faire passer dans la route
 	public params;
+	// Récupération du menu de navigation
 	@ViewChild(Nav) nav: Nav;
-	public specialPage: boolean = false;
 
 	constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
@@ -71,9 +71,6 @@ export class MenuPage implements OnInit {
 		this.userId = this.navParams.get("id");
 		// Récupération de l'id de l'utilisateur
 		this.index = this.navParams.get("index") || 0;
-		// Récupération du nom de la page
-		this.specialPage = this.navParams.get("specialPage") || false;
-		console.log(this.navParams.get("specialPage"));
 		// Passage des paramètres dans la route
 		this.params = { user: this.user, id: this.userId };
 	}
@@ -87,7 +84,6 @@ export class MenuPage implements OnInit {
 		if (this.nav.getActiveChildNavs()[0] && page.index != undefined) {
 			this.nav.getActiveChildNavs()[0].select(page.index, this.params);
 		} else {
-			console.log("ici");
 			this.nav.setRoot(page.pageName, this.params);
 		}
 	}

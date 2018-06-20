@@ -3,10 +3,6 @@ import { NavController, NavParams } from 'ionic-angular';
 import { ConversationsPage } from '../home/conversations/conversations';
 import { DemandesPage } from '../home/demandes/demandes';
 import { User } from '../../models/User.model';
-import { RadarPage } from '../radar/radar';
-import { MenuPage } from '../menu/menu';
-
-
 
 @Component({
 	selector: "page-home",

@@ -4,7 +4,6 @@ import { Geolocation } from '@ionic-native/geolocation';
 import * as firebase from 'firebase';
 import { User } from '../../models/User.model';
 
-
 @Component({
 	selector: "page-radar",
 	templateUrl: "radar.html"
@@ -12,26 +11,18 @@ import { User } from '../../models/User.model';
 export class RadarPage implements OnInit {
 	latitude: any;
 	longitude: any;
+	index: number;
+	user: User;
+	public userId: string;
+	public params;
 
 	constructor(
 		public navCtrl: NavController,
 		private geolocation: Geolocation,
 		public navParams : NavParams
 	) {}
-	index: number;
-	user: User;
-	public userId: string;
-	public params;
 	ngOnInit() {
-		// Récupération de l'utilisateur
-		this.user = this.navParams.get("user");
-		// Récupération de l'Id de l'utilisateur
-		this.userId = this.navParams.get("id");
-		// Récupération de l'Id de l'utilisateur
-		this.index = this.navParams.get("index");
-		// Passage des paramètres dans la route
-		this.params = { user: this.user, id: this.userId };
-		console.log(this.user);
+
 
 		let watch = this.geolocation.watchPosition();
 
@@ -64,8 +55,3 @@ export class RadarPage implements OnInit {
 		});
 	}
 }
-
-
-
-
-

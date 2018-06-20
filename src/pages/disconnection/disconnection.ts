@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { User } from '../../models/User.model';
-import { MenuPage } from '../menu/menu';
 import { AuthService } from '../../services/auth.service';
 import { WelcomePage } from '../welcome/welcome';
+import { TabsPage } from '../tabs/tabs';
 
 @Component({
 	selector: 'page-disconnection',
@@ -37,7 +37,7 @@ export class DisconnectionPage implements OnInit {
 				{
 					text: "Non",
 					handler: data => {
-						this.navCtrl.setRoot(MenuPage, this.params);
+						this.navCtrl.setRoot(TabsPage, this.params);
 					}
 				},
 				{
