@@ -9,7 +9,7 @@ export class UserService {
 
 	constructor(public toastCtrl: ToastController) { }
 
-	// Enregistement d'un utilisateur dans la base de données
+	// Enregistrement d'un utilisateur dans la base de données
 	createUser(user: User) {
 		let userCurrent = firebase.auth().currentUser;
 		firebase
@@ -18,7 +18,7 @@ export class UserService {
 			.set(user);
 	}
 
-	// Enregistement d'un utilisateur dans la base de données
+	// Enregistrement d'un utilisateur dans la base de données
 	updateUser(id: string, user: User) {
 		firebase
 			.database()
@@ -81,6 +81,7 @@ export class UserService {
 	}
 
 	// Calcul l'age en fonction de la string YYYY-MM-DD et de la date courante
+
 	getAge(birthDay: string, birthMonth: string, birthYear: string) {
 		let age: any;
 		let today = new Date();
@@ -142,3 +143,4 @@ export class UserService {
 		);
 	}
 }
+

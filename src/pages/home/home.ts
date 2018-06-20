@@ -5,6 +5,7 @@ import { DemandesPage } from '../home/demandes/demandes';
 import { RadarPage } from '../radar/radar';
 import { User } from '../../models/User.model';
 
+
 @Component({
 	selector: "page-home",
 	templateUrl: "home.html"
@@ -27,7 +28,6 @@ export class HomePage implements OnInit {
 		this.user = this.navParams.get("user");
 		// Récupération de l'Id de l'utilisateur
 		this.userId = this.navParams.get("id");
-	}
 
 	goToProfil() {
 		// Passage des paramètres dans la route

@@ -1,7 +1,9 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from "ionic-angular";
 import { User } from '../../../models/User.model';
-import { UserService } from '../../../services/user.service';
+import { UserService } from "../../../services/user.service";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+
 
 @Component({
 	selector: "page-profil",
@@ -24,6 +26,7 @@ export class ProfilPage {
 		public userService: UserService
 	) {}
 
+
 	ngOnInit() {
 		// Récupération de l'utilisateur
 		this.user = this.navParams.get("user");
@@ -33,12 +36,18 @@ export class ProfilPage {
 		this.index = this.navParams.get("index");
 		// Passage des paramètres dans la route
 		this.params = { user: this.user, id: this.userId };
+    
 		// Calcul de l'age
 		this.userAge = this.userService.getAge(this.user.birthDay, this.user.birthMonth, this.user.birthYear);
 		// Variables pour l'affichage du genre et du choix
 		this.isMan = this.user.sexe === "homme";
 		this.wantMan = this.user.choix === "homme";
 	}
+
+	logForm(form) {
+    	console.log(this.todo)
+  	}
+
 
 	updateProfil(value: string) {
 		console.log(value);
