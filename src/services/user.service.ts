@@ -3,6 +3,7 @@ import { User } from "../models/User.model";
 import * as firebase from "firebase";
 import DataSnapshot = firebase.database.DataSnapshot;
 import { ToastController } from "ionic-angular";
+import * as moment from "moment";
 
 @Injectable()
 export class UserService {
@@ -80,21 +81,15 @@ export class UserService {
 		toast.present();
 	}
 
-	// Calcul l'age en fonction de la string YYYY-MM-DD et de la date courante
-
+	// Calcul l'age
 	getAge(birthDay: string, birthMonth: string, birthYear: string) {
-		let age: any;
-		let today = new Date();
-		let nowyear = today.getFullYear();
-		let nowmonth = today.getMonth();
-		let nowday = today.getDate();
-
-		let age_month = nowmonth - parseInt(birthMonth);
-		let age_day = nowday - parseInt(birthDay);
-
-		if (age_month < 0 || (age_month == 0 && age_day < 0)) {
-			age = (nowyear - parseInt(birthYear)) - 1;
-		} else { age = nowyear - parseInt(birthYear); }
+		// Date de naissance
+		let birthDayUser = moment(birthYear + "-" + birthMonth + "-" + birthDay, 'YYYY-MM-DD');
+		// Date actuelle
+		let dateCurrent = moment();
+		// Retourne l'âge
+		let age = dateCurrent.diff(birthDayUser, 'year');
+		console.log(age);
 		return age;
 	}
 
