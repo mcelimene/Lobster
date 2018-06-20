@@ -58,7 +58,7 @@ export class ProfilPage {
 		this.userService.presentToast("Votre profil a bien été mis à jour");
 		// rafraichissement de la page avec le profil à jour
 		// Redirection vers la page Profil
-		this.navCtrl.parent.select(1, this.params);
+		this.navCtrl.parent.select(2, this.params);
 	}
 
 }

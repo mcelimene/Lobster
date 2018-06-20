@@ -29,8 +29,7 @@ export class MenuPage implements OnInit {
 	// Paramètres à faire passer dans la route
 	public params;
 	@ViewChild(Nav) nav: Nav;
-	page: string;
-	radar: boolean = false;
+	public specialPage: boolean = false;
 
 	constructor(public navCtrl: NavController, public navParams: NavParams) {}
 
@@ -44,7 +43,7 @@ export class MenuPage implements OnInit {
 		{
 			title: "Profil",
 			pageName: TabsPage,
-			index: 1,
+			index: 2,
 			icon: "contact"
 		},
 		{
@@ -60,6 +59,7 @@ export class MenuPage implements OnInit {
 		{
 			title: "Radar",
 			pageName: RadarPage,
+			index: 1,
 			icon: "ionic"
 		}
 	];
@@ -72,23 +72,23 @@ export class MenuPage implements OnInit {
 		// Récupération de l'id de l'utilisateur
 		this.index = this.navParams.get("index") || 0;
 		// Récupération du nom de la page
-		this.page = this.navParams.get("pageName");
+		this.specialPage = this.navParams.get("specialPage") || false;
+		console.log(this.navParams.get("specialPage"));
 		// Passage des paramètres dans la route
 		this.params = { user: this.user, id: this.userId };
 	}
 
 	openPage(page: PageInterface) {
-		if (page.index) {
+		if (page.index != undefined) {
 			// Ajout du paramètre index dans la route
 			this.params.index = page.index;
 		}
 
 		if (this.nav.getActiveChildNavs()[0] && page.index != undefined) {
 			this.nav.getActiveChildNavs()[0].select(page.index, this.params);
-			console.log("ici, index :" + this.params.index);
 		} else {
+			console.log("ici");
 			this.nav.setRoot(page.pageName, this.params);
-			console.log("là, index :" + this.params.index);
 		}
 	}
 }

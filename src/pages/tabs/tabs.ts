@@ -4,6 +4,7 @@ import { ProfilPage } from '../home/profil/profil';
 import { NavController, NavParams } from 'ionic-angular';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/User.model';
+import { RadarPage } from '../radar/radar';
 
 @Component({
 	templateUrl: "tabs.html"
@@ -11,6 +12,7 @@ import { User } from '../../models/User.model';
 export class TabsPage implements OnInit {
 	// Pages disponibles dans les tabs
 	home = HomePage;
+	radar = RadarPage;
 	profile = ProfilPage;
 	// Utilisateur
 	user: User;

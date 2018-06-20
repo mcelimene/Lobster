@@ -54,7 +54,7 @@ export class SigninPage implements OnInit {
 					(user: User) => {
 						this.user = user;
 						// Redirection vers la page Home
-						this.navCtrl.setRoot(MenuPage, {
+						this.navCtrl.push(MenuPage, {
 						// Passage des paramètres dans la route
 							index: 0,
 							id: id,

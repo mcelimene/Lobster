@@ -3,6 +3,9 @@ import { NavController, NavParams } from 'ionic-angular';
 import { ConversationsPage } from '../home/conversations/conversations';
 import { DemandesPage } from '../home/demandes/demandes';
 import { User } from '../../models/User.model';
+import { RadarPage } from '../radar/radar';
+import { MenuPage } from '../menu/menu';
+
 
 
 @Component({
@@ -33,12 +36,16 @@ export class HomePage implements OnInit {
 		// Passage des paramètres dans la route
 		this.params = { id: this.userId, user: this.user };
 		// Redirection vers la page Profil
-		this.navCtrl.parent.select(1, this.params);
+		this.navCtrl.parent.select(2, this.params);
 	}
 
-	// goToRadar() {
+	goToRadar() {
+		// Passage des paramètres dans la route
+		this.params = { id: this.userId, user: this.user };
+		// Redirection vers la page Profil
+		this.navCtrl.parent.select(1, this.params);
 
-	// }
+	}
 
 	goToDemandes() {
 		this.navCtrl.push(DemandesPage);

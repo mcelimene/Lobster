@@ -89,7 +89,6 @@ export class UserService {
 		let dateCurrent = moment();
 		// Retourne l'âge
 		let age = dateCurrent.diff(birthDayUser, 'year');
-		console.log(age);
 		return age;
 	}
 
