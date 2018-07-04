@@ -16,7 +16,6 @@ import { SigninPage } from '../pages/signin/signin';
 import { ProfilPage } from '../pages/home/profil/profil';
 import { RadarPage } from '../pages/radar/radar';
 import { RecherchesPage } from '../pages/radar/recherches/recherches';
-import { ContactsPage } from '../pages/contacts/contacts';
 import { DemandesPage } from '../pages/home/demandes/demandes';
 import { MessagesPage } from '../pages/home/messages/messages';
 import { ConversationsPage } from '../pages/home/conversations/conversations';
@@ -43,7 +42,6 @@ import { RadarService } from '../services/radar.service';
     ProfilPage,
 	RadarPage,
 	RecherchesPage,
-	ContactsPage,
     DemandesPage,
     MessagesPage,
     ConversationsPage,
@@ -69,7 +67,6 @@ import { RadarService } from '../services/radar.service';
 	ProfilPage,
 	RadarPage,
 	RecherchesPage,
-	ContactsPage,
 	DemandesPage,
 	MessagesPage,
 	ConversationsPage,
