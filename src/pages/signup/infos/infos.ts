@@ -2,7 +2,7 @@ import { Component, ElementRef, ViewChild, OnInit } from "@angular/core";
 import { NavController, NavParams } from "ionic-angular";
 import { User } from "../../../models/User.model";
 import { UserService } from "../../../services/user.service";
-import { MenuPage } from "../../menu/menu";
+import { MenuPage } from "../../navigation/menu/menu";
 
 
 @Component({

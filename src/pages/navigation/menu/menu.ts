@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NavController, NavParams, Nav } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
-import { User } from '../../models/User.model';
-import { SettingsPage } from '../settings/settings';
-import { RadarPage } from '../radar/radar';
-import { SignOutPage } from '../signout/signout';
+import { User } from '../../../models/User.model';
+import { SettingsPage } from '../../settings/settings';
+import { RadarPage } from '../../radar/radar';
+import { SignOutPage } from '../../signout/signout';
 
 
 export interface PageInterface {

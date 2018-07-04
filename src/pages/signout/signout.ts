@@ -3,7 +3,7 @@ import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { User } from '../../models/User.model';
 import { AuthService } from '../../services/auth.service';
 import { WelcomePage } from '../welcome/welcome';
-import { TabsPage } from '../tabs/tabs';
+import { TabsPage } from '../navigation/tabs/tabs';
 
 @Component({
 	selector: 'page-signout',

@@ -4,7 +4,7 @@ import { NavController } from 'ionic-angular';
 import { AuthService } from '../../services/auth.service';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/User.model';
-import { MenuPage } from '../menu/menu';
+import { MenuPage } from '../navigation/menu/menu';
 
 @Component({
 	selector: "page-signin",

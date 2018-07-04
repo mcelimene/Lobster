@@ -3,7 +3,7 @@ import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/User.model';
 import { WelcomePage } from '../welcome/welcome';
-import { TabsPage } from '../tabs/tabs';
+import { TabsPage } from '../navigation/tabs/tabs';
 
 @Component({
 	selector: 'page-settings',
