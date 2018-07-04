@@ -6,10 +6,10 @@ import { WelcomePage } from '../welcome/welcome';
 import { TabsPage } from '../tabs/tabs';
 
 @Component({
-	selector: 'page-disconnection',
-	templateUrl: 'disconnection.html',
+	selector: 'page-signout',
+	templateUrl: 'signout.html',
 })
-export class DisconnectionPage implements OnInit {
+export class SignOutPage implements OnInit {
 
 	user: User;
 	public userId: string;

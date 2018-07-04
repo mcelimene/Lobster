@@ -22,11 +22,11 @@ import { RadarPage } from '../pages/radar/radar';
 import { Geolocation } from '@ionic-native/geolocation';
 import { UserService } from '../services/user.service';
 import { MenuPage } from '../pages/menu/menu';
-import { DisconnectionPage } from '../pages/disconnection/disconnection';
 import { SettingsPage } from '../pages/settings/settings';
 import { RadarService } from '../services/radar.service';
 import { ContactsPage } from '../pages/contacts/contacts';
 import { RecherchesPage } from '../pages/radar/recherches/recherches';
+import { SignOutPage } from '../pages/signout/signout';
 
 @NgModule({
   declarations: [
@@ -46,7 +46,7 @@ import { RecherchesPage } from '../pages/radar/recherches/recherches';
 	MenuPage,
 	TabsPage,
 	SettingsPage,
-	DisconnectionPage
+	SignOutPage
   ],
   imports: [
     BrowserModule,
@@ -72,7 +72,7 @@ import { RecherchesPage } from '../pages/radar/recherches/recherches';
 	MenuPage,
 	TabsPage,
 	SettingsPage,
-	DisconnectionPage
+	SignOutPage
   ],
   providers: [
     StatusBar,
