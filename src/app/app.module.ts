@@ -13,7 +13,7 @@ import { HomePage } from '../pages/home/home';
 import { SignupPage } from "../pages/signup/signup";
 import { InfosPage } from "../pages/signup/infos/infos";
 import { SigninPage } from '../pages/signin/signin';
-import { ProfilPage } from '../pages/home/profil/profil';
+import { ProfilePage } from '../pages/home/profile/profile';
 import { RadarPage } from '../pages/radar/radar';
 import { RecherchesPage } from '../pages/radar/recherches/recherches';
 import { DemandesPage } from '../pages/home/demandes/demandes';
@@ -39,7 +39,7 @@ import { RadarService } from '../services/radar.service';
 	InfosPage,
 	SigninPage,
 	HomePage,
-    ProfilPage,
+    ProfilePage,
 	RadarPage,
 	RecherchesPage,
     DemandesPage,
@@ -64,7 +64,7 @@ import { RadarService } from '../services/radar.service';
 	InfosPage,
 	SigninPage,
 	HomePage,
-	ProfilPage,
+	ProfilePage,
 	RadarPage,
 	RecherchesPage,
 	DemandesPage,

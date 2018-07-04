@@ -43,6 +43,7 @@ export class AuthService {
 		});
 	}
 
+	// Déconnexion d'un utilisateur
 	signOutUser() {
 		firebase.auth().signOut().then(function () {
 			console.log('Déconnecté');

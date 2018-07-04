@@ -19,7 +19,7 @@ export class UserService {
 			.set(user);
 	}
 
-	// Enregistrement d'un utilisateur dans la base de données
+	// Mise à jour d'un utilisateur dans la base de données
 	updateUser(id: string, user: User) {
 		firebase
 			.database()
@@ -81,7 +81,7 @@ export class UserService {
 		toast.present();
 	}
 
-	// Calcul l'age
+	// Récupération de l'âge d'un utilisateur
 	getAge(birthDay: string, birthMonth: string, birthYear: string) {
 		// Date de naissance
 		let birthDayUser = moment(birthYear + "-" + birthMonth + "-" + birthDay, 'YYYY-MM-DD');
@@ -92,6 +92,7 @@ export class UserService {
 		return age;
 	}
 
+	// Supression d'un utilisateur
 	removeUser(id: string) {
 
 		// Récupération de l'utilisteur à partir de l'id

@@ -5,10 +5,10 @@ import { UserService } from '../../../services/user.service';
 
 
 @Component({
-	selector: "page-profil",
-	templateUrl: "profil.html"
+	selector: "page-profile",
+	templateUrl: "profile.html"
 })
-export class ProfilPage {
+export class ProfilePage {
 	index: number;
 	user: User;
 	public userId: string;

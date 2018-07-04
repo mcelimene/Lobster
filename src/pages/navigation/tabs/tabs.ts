@@ -4,7 +4,7 @@ import { UserService } from "../../../services/user.service";
 import { User } from "../../../models/User.model";
 
 import { HomePage } from '../../home/home';
-import { ProfilPage } from '../../home/profil/profil';
+import { ProfilePage } from '../../home/profile/profile';
 import { RadarPage } from "../../radar/radar";
 
 @Component({
@@ -14,7 +14,7 @@ export class TabsPage implements OnInit {
 	// Pages disponibles dans les tabs
 	home = HomePage;
 	radar = RadarPage;
-	profile = ProfilPage;
+	profile = ProfilePage;
 	// Utilisateur
 	user: User;
 	// id de l'utilisateur passé dans la route
