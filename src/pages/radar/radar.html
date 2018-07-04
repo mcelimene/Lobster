@@ -1,25 +1,12 @@
-<ion-header>
-	<ion-navbar>
-		<button ion-button menuToggle color="orange">
-			<ion-icon name="menu"></ion-icon>
-		</button>
-	</ion-navbar>
-</ion-header>
 <ion-content padding>
 
     <ion-row justify-content-center align-items-center style="height: 100%">
       <ion-col>
         <ion-item no-lines>
-            <img id="imgRadar" src="assets/imgs/radarPage1.png">
-         </ion-item>
-          <h2 ion-text text-center color="orange"(click)='position()'>... Recherche en cours ...</h2>
-
-     <h5 ion-text text-center color="orange" >{{latitude}}:{{longitude}} </h5>
-
-
-      </ion-col>
+            <img id="imgRadar" src="assets/imgs/radarPage.png">
+        </ion-item>
+        <button ion-button color="orange" round outline block (click)='goToRecherches()'>Voir les profils</button>
+      </ion-col>  
     </ion-row>
-
-
 
 </ion-content>

@@ -1,14 +1,12 @@
 page-radar {
 
      #imgRadar {
-          background: wheat;
-          animation: example 15s linear 0s infinite; 
-          width: 360px;
-
+          animation: rotate 15s linear 0s infinite; 
+          width: 100%;
           margin: auto;       
           }
    
-     @keyframes example {
+     @keyframes rotate {
           from { transform: rotate(0deg); }
           to { transform: rotate(360deg); }
           }

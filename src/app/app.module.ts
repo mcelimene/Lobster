@@ -24,24 +24,29 @@ import { UserService } from '../services/user.service';
 import { MenuPage } from '../pages/menu/menu';
 import { DisconnectionPage } from '../pages/disconnection/disconnection';
 import { SettingsPage } from '../pages/settings/settings';
+import { RadarService } from '../services/radar.service';
+import { ContactsPage } from '../pages/contacts/contacts';
+import { RecherchesPage } from '../pages/radar/recherches/recherches';
 
 @NgModule({
   declarations: [
     MyApp,
-    ProfilPage,
-    ConversationsPage,
-    MessagesPage,
-	HomePage,
-	TabsPage,
-	SigninPage,
+    WelcomePage,
 	SignupPage,
 	InfosPage,
-    WelcomePage,
-    DemandesPage,
+	SigninPage,
+	HomePage,
+    ProfilPage,
 	RadarPage,
+	RecherchesPage,
+	ContactsPage,
+    DemandesPage,
+    MessagesPage,
+    ConversationsPage,
 	MenuPage,
-	DisconnectionPage,
-	SettingsPage
+	TabsPage,
+	SettingsPage,
+	DisconnectionPage
   ],
   imports: [
     BrowserModule,
@@ -51,29 +56,32 @@ import { SettingsPage } from '../pages/settings/settings';
   ],
   bootstrap: [IonicApp],
   entryComponents: [
-    MyApp,
-    ProfilPage,
-    HomePage,
-    ConversationsPage,
-    MessagesPage,
-    WelcomePage,
-	SigninPage,
+	MyApp,
+	WelcomePage,
 	SignupPage,
 	InfosPage,
-	TabsPage,
-    DemandesPage,
+	SigninPage,
+	HomePage,
+	ProfilPage,
 	RadarPage,
+	RecherchesPage,
+	ContactsPage,
+	DemandesPage,
+	MessagesPage,
+	ConversationsPage,
 	MenuPage,
-	DisconnectionPage,
-	SettingsPage
+	TabsPage,
+	SettingsPage,
+	DisconnectionPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthService,
+	UserService,
 	Geolocation,
-	UserService
+	RadarService
   ]
 })
 export class AppModule {}

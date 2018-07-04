@@ -1,0 +1,28 @@
+page-recherches {
+
+	margin-top: 2em;
+
+	#imgProfil {
+	 	overflow:hidden;
+	    -webkit-border-radius:50%;
+	 	-moz-border-radius:50%;
+	    border-radius:50%;
+	    width:6em;
+	    height:6em;
+	    border: 2px solid #de4f31;
+	}
+
+	#profil {
+		padding-top: 1em;
+		padding-left: 3em;
+	}
+
+	h1, h2 {
+		color: #de4f31;
+	}
+
+	.orange {
+		color: #de4f31;
+	}
+
+}
